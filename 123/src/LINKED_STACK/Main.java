@@ -33,7 +33,6 @@ public class Main {
         t1.setVisible(true);
 
         JTextArea dis = new JTextArea();
-        dis.enable(false);
         dis.setBounds(400, 75, 230, 185);
 
         JScrollPane sc = new JScrollPane(dis);
@@ -53,6 +52,7 @@ public class Main {
                     t1.setText("");
                 } else {
                     s.push(t1.getText());
+
                     t1.setText("");
                 }
             }
@@ -96,17 +96,17 @@ public class Main {
         b5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dis.setText("");
                 if(s.isEmpty())
                     dis.append("your stack is Empty!");
-                else {
-                    dis.append("\n the items in your stack are : \n");
+                else
+                    dis.append("the items in your stack are : \n");
 
-                    while (s.bottom.getLink() != null) {
-                        dis.append((String) s.bottom.getData());
-                        if (s.bottom != s.top)
-                            dis.append("\n");
-                    }
-                }
+
+
+
+
+
 
             }
         });

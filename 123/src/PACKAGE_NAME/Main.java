@@ -36,11 +36,11 @@ public class Main {
 
         JTextArea dis = new JTextArea();
         dis.enableInputMethods(false);
-        dis.setBounds(400,75,230,185);
+        dis.setBounds(350,75,300,185);
 
         JScrollPane sc = new JScrollPane(dis);
         sc.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        sc.setBounds(400,75,230,185);
+        sc.setBounds(350,75,300,185);
         sc.setVisible(true);
 
 
@@ -57,6 +57,7 @@ public class Main {
                 else {
                     s.push(t1.getText());
                     t1.setText("");
+
                 }
             }
         });
@@ -95,6 +96,7 @@ public class Main {
         b5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dis.setText("");
                 dis.append("the items in your stack are : \n");
                 for(int i = (s.manyItems -1); i >= 0; i--){
                    dis.append((String)s.data[i]);
@@ -104,9 +106,10 @@ public class Main {
                 }
                 dis.append("\n The elapsed time is:  ");
                 for (int i = 0; i<s.timecal.length; i++){
-                    dis.append(s.timecal[i]);
-                    if(i!=0)
+                    if(s.timecal[i]!=null) {
+                        dis.append(s.timecal[i]);
                         dis.append("-->");
+                    }
                 }
                 dis.append("\n");
             }

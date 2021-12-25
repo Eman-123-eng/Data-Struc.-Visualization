@@ -10,7 +10,6 @@ public class LinkedStack<E> extends Node implements Cloneable{
 
     public LinkedStack(){
         top=null;
-        bottom=null;
     }
 
     public LinkedStack<E> clone( ){
@@ -51,11 +50,11 @@ public class LinkedStack<E> extends Node implements Cloneable{
 
     public void push(E item){
         if(isEmpty()) {
-            top = new Node<E>(item, top);
-            bottom=top;
+            bottom = new Node<E>(item, null);
+            top=bottom;
         }
         else
-            top = new Node<E>(item, top);
+            top = new Node<E>(item,top);
     }
 
     public int size( ){

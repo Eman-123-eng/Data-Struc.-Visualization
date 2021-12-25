@@ -99,7 +99,7 @@ class Node<E>
         answer[1] = copyTail;
         return answer;
     }
-    public static Node listPosition(Node head, int position)
+    public Node listPosition(Node head, int position)
     {
         Node cursor;
         int i;
