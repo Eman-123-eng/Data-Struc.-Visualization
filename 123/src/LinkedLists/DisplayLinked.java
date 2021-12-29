@@ -170,6 +170,7 @@ public class DisplayLinked {
         frame.add(l2);
         frame.add(lAddTime);
         frame.add(lRemoveTime);
+
         frame.setLayout(null);
         frame.setSize(500, 600);
         frame.setVisible(true);

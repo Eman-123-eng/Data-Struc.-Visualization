@@ -21,6 +21,11 @@ public class ArrayBasedQueue<E> implements Cloneable {
         data = (E[]) new Object[initCapacity];
     }
 
+    public E getFront() {
+        if (manyItems == 0) return null;
+        return data[front];
+    }
+
     //enqueue
     public void add(E item) {
         if (manyItems == data.length) {
@@ -127,7 +132,7 @@ public class ArrayBasedQueue<E> implements Cloneable {
             for (int i = front; i != rear + 1; i = nextIndex(i))
                 str += data[i] + " | ";
 
-        return str + " - No. of elements: " + size() + " - front: " + front + " - rear: " + rear;
+        return str;
     }
 
 
