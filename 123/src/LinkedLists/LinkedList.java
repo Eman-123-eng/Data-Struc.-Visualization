@@ -1,9 +1,9 @@
 package LinkedLists;
 
 public class LinkedList<E> extends Node implements Cloneable {
-    private int manyNodes;
+    public int manyNodes;
     public Node<E> head, tail;
-    Node<E> cursor, precursor;/*refer to the current node*/
+    public Node<E> cursor, precursor;/*refer to the current node*/
 
     public LinkedList() {
 
@@ -233,6 +233,10 @@ public class LinkedList<E> extends Node implements Cloneable {
         }
         return str;
     }
+
+
+
+
 
 
 }

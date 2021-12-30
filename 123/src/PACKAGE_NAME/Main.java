@@ -11,13 +11,14 @@ public class Main {
 
     public static void main(String[] args){
 
+        final String[] timeStrg = {"", ""};
 
         ArrStack s = new ArrStack();
 
         JFrame f = new JFrame("ArrayStack");
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setVisible(true);
-        f.setSize(700,500);
+        f.setSize(700,600);
         f.setLayout(null);
 
 
@@ -43,6 +44,12 @@ public class Main {
         sc.setBounds(350,75,300,185);
         sc.setVisible(true);
 
+        JLabel lpushTime = new JLabel();
+        lpushTime.setBounds(40, 400, 600, 30);
+
+        JLabel lpopTime = new JLabel();
+        lpopTime.setBounds(40, 450, 600, 30);
+
 
         JButton b1 = new JButton("Push");
         b1.setBounds(150,270,80,30);
@@ -50,15 +57,18 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if(t1.getText().length()>1) {
+                long startTime = System.nanoTime();
+                if (t1.getText().length() > 1) {
                     JOptionPane.showMessageDialog(null, "You can't enter more than one item");
                     t1.setText("");
-                }
-                else {
+                } else {
                     s.push(t1.getText());
-                    t1.setText("");
 
+                    t1.setText("");
                 }
+                long endTime = System.nanoTime();
+                timeStrg[0] += (endTime - startTime) + "  ";
+                lpushTime.setText("Adding time: " + timeStrg[0]);
             }
         });
 
@@ -67,9 +77,13 @@ public class Main {
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                s.pop();
+                long startTime = System.nanoTime();
+                dis.append("\n The element removed is  "+ s.pop());
                 if(s.manyItems == 0)
                     dis.append("\n there's no items left in your stack! ");
+                long endTime = System.nanoTime();
+                timeStrg[1] += (endTime - startTime) + "  ";
+                lpopTime.setText("Removing time : " + timeStrg[1]);
             }
         });
 
@@ -104,13 +118,6 @@ public class Main {
                        dis.append("\n");
 
                 }
-                dis.append("\n The elapsed time is:  ");
-                for (int i = 0; i<s.timecal.length; i++){
-                    if(s.timecal[i]!=null) {
-                        dis.append(s.timecal[i]);
-                        dis.append("-->");
-                    }
-                }
                 dis.append("\n");
             }
         });
@@ -125,7 +132,6 @@ public class Main {
                 else {
                     ArrStack c = s.clone();
                     dis.append("\n your stack has been copied successfuly! \n");
-                    dis.append("The elapsed time is : " + c.time +"\n");
                 }
             }
         });
@@ -141,6 +147,8 @@ public class Main {
         f.add(b4);
         f.add(b5);
         f.add(b6);
+        f.add(lpopTime);
+        f.add(lpushTime);
 
     }
 }

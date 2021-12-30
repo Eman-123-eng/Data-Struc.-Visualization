@@ -3,18 +3,23 @@
 package LINKED_STACK;
 
 import java.util.EmptyStackException;
+import LinkedLists.LinkedList;
+import LinkedLists.Node;
 
-public class LinkedStack<E> extends Node implements Cloneable{
-    protected Node<E> top;
-    protected Node<E> bottom;
+public class LinkedStack<E> extends LinkedList<E> implements Cloneable{
+    protected LinkedList m = new LinkedList();
+
 
     public LinkedStack(){
-        top=null;
+        m.tail=null;
+        m.head=null;
     }
 
     public LinkedStack<E> clone( ){
         LinkedStack<E> answer;
-        try
+        answer=(LinkedStack<E>)m.clone();
+
+        /*try
         {
             answer = (LinkedStack<E>) super.clone( );
         }
@@ -24,41 +29,39 @@ public class LinkedStack<E> extends Node implements Cloneable{
                     ("This class does not implement Cloneable.");
         }
         answer.top = Node.listCopy(top); // Generic listCopy method
+
+         */
+
         return answer;
     }
 
     public boolean isEmpty( ){
-        return (top == null);
+        return (m.head == null);
     }
 
     public E peek( ){
-        if (top == null)
+        if (m.head == null)
 // EmptyStackException is from java.util, and its constructor has no argument.
             throw new EmptyStackException( );
-        return top.getData( );
+        return (E) m.tail.getData( );
     }
 
     public E pop( ){
         E answer;
-        if (top == null)
+        if (m.head == null)
 // EmptyStackException is from java.util, and its constructor has no argument.
             throw new EmptyStackException( );
-        answer = top.getData( );
-        top = top.getLink( );
+        answer = (E) m.tail.getData( );
+        m.removeCurrent();
         return answer;
     }
 
     public void push(E item){
-        if(isEmpty()) {
-            bottom = new Node<E>(item, null);
-            top=bottom;
-        }
-        else
-            top = new Node<E>(item,top);
+        m.addLast(item);
     }
 
     public int size( ){
-        return Node.listLength(top); // Generic listLength method
+        return Node.listLength(m.head); // Generic listLength method
     }
 
 

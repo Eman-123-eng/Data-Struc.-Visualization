@@ -1,5 +1,7 @@
 package LINKED_STACK;
 
+import LinkedLists.LinkedList;
+import LinkedLists.Node;
 import PACKAGE_NAME.ArrStack;
 
 import javax.swing.*;
@@ -9,13 +11,14 @@ import java.awt.event.ActionListener;
 
 public class Main {
     public static void main(String[] args) {
+        final String[] timeStr = {"", ""};
         LinkedStack s = new LinkedStack();
 
 
         JFrame f = new JFrame("LinkedStack");
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setVisible(true);
-        f.setSize(700, 500);
+        f.setSize(700, 600);
         f.setLayout(null);
 
 
@@ -40,13 +43,19 @@ public class Main {
         sc.setBounds(400, 75, 230, 185);
         sc.setVisible(true);
 
+        JLabel lpushTime = new JLabel();
+        lpushTime.setBounds(40, 400, 600, 30);
+
+        JLabel lpopTime = new JLabel();
+        lpopTime.setBounds(40, 450, 600, 30);
+
 
         JButton b1 = new JButton("Push");
         b1.setBounds(150, 270, 80, 30);
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+               long startTime = System.nanoTime();
                 if (t1.getText().length() > 1) {
                     JOptionPane.showMessageDialog(null, "You can't enter more than one item");
                     t1.setText("");
@@ -55,6 +64,9 @@ public class Main {
 
                     t1.setText("");
                 }
+                long endTime = System.nanoTime();
+                timeStr[0] += (endTime - startTime) + "  ";
+                lpushTime.setText("Adding time: " + timeStr[0]);
             }
         });
 
@@ -63,10 +75,15 @@ public class Main {
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                s.pop();
+                long startTime = System.nanoTime();
+                dis.append("\n The element removed is  "+ s.pop());
                 if(s.isEmpty())
                     dis.append("\n there's no items left in your stack! ");
+                long endTime = System.nanoTime();
+                timeStr[1] += (endTime - startTime) + "  ";
+                lpopTime.setText("Removing time : " + timeStr[1]);
             }
+
         });
 
         JButton b3 = new JButton("Peek");
@@ -96,11 +113,37 @@ public class Main {
         b5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 dis.setText("");
                 if(s.isEmpty())
                     dis.append("your stack is Empty!");
-                else
+                else {
                     dis.append("the items in your stack are : \n");
+                    LinkedList p = s.m.clone();
+                    Node curr = p.head;
+                    Node next = null;
+                    Node prev = null;
+                    while (curr != null) {
+                        next = curr.link;
+                        curr.link = prev;
+                        prev = curr;
+                        curr = next;
+                    }
+                    p.head = prev;
+
+                    for(Node v =p.head;v != null; v = v.link){
+                        dis.append(v.getData() +"\n");
+                    }
+
+
+
+
+
+
+
+                }
+
+
 
 
 
@@ -135,6 +178,8 @@ public class Main {
         f.add(b3);
         f.add(b4);
         f.add(b5);
+        f.add(lpopTime);
+        f.add(lpushTime);
         //f.add(b6);
     }
 }

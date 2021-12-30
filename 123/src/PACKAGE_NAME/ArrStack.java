@@ -8,11 +8,6 @@ public class ArrStack<E> implements Cloneable{
 
     protected Object[ ] data;
     protected int manyItems;
-    protected long starttime;
-    protected long endtime;
-    protected long time;
-    int m =0;
-    protected String[] timecal=new String[10];
 
 
     public ArrStack(){
@@ -30,7 +25,7 @@ public class ArrStack<E> implements Cloneable{
     }
 
     public ArrStack<E> clone(){
-        starttime=System.nanoTime();
+
         ArrStack<E> answer;
         try
         {
@@ -42,8 +37,6 @@ public class ArrStack<E> implements Cloneable{
                     ("This class does not implement Cloneable.");
         }
         answer.data = data.clone( );
-        endtime=System.nanoTime();
-        time=endtime-starttime;
         return answer;
     }
 
@@ -72,29 +65,23 @@ public class ArrStack<E> implements Cloneable{
     }
 
     public E pop(){
-        starttime=System.nanoTime();
         E answer;
         if (manyItems == 0)
             throw new EmptyStackException( );
         answer = (E) data[--manyItems];
         data[manyItems] = null; // For the garbage collector
-        endtime=System.nanoTime();
-        time=endtime-starttime;
-        performance(time);
         return answer;
     }
 
     public void push(E item){
-        starttime=System.nanoTime();
+
         if (manyItems == data.length)
         {
             ensureCapacity(manyItems * 2 + 1);
         }
         data[manyItems] = item;
         manyItems++;
-        endtime=System.nanoTime();
-        time=endtime-starttime;
-        performance(time);
+
     }
 
     public int size(){
@@ -111,12 +98,7 @@ public class ArrStack<E> implements Cloneable{
         }
 
     }
-    public void performance(long time){
-        timecal[m]=Long.toString(time);
-        System.out.println(m);
-        m++;
 
-    }
     public static void main(String[] args){
         ArrStack s1 = new ArrStack(2);
         s1.push(0);

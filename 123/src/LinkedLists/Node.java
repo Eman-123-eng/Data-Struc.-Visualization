@@ -2,8 +2,8 @@ package LinkedLists;
 //import java.util.LinkedList;
 
 public class Node<E> {
-    private E data;
-    private Node<E> link;
+    public E data;
+    public Node<E> link;
 
     public Node() {
     }
@@ -185,12 +185,13 @@ public class Node<E> {
          return answer;
      }
  */
-    public static void display(Node head) {
+    public static String display(Node head) {
         Node cursor = head;
         for (; cursor != null; cursor = cursor.link) {
             System.out.print(cursor.data + " ");
         }
         System.out.println();
+        return null;
     }
 
 
