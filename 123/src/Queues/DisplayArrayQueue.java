@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class DisplayArrayQueue {
     static JFrame f;
-    static String s = "The elapsed time:";
+
     /*static String[][] data = {{"it", "t"}, {"it2", "t2"}};
     static String[] header = {"Item", "Time (ms)"};*/
     static String displayStr = "";

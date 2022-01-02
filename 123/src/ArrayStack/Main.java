@@ -35,7 +35,6 @@ public class Main extends JPanel {
 
         JTextField t1 = new JTextField();
         t1.setBounds(450, 20, 100, 25);
-        t1.setVisible(true);
 
         DefaultTableModel tModelAdd = new DefaultTableModel();
         tModelAdd.addColumn("Added Item");
@@ -201,6 +200,7 @@ public class Main extends JPanel {
         f.add(spAdd);
         f.add(spRemove);
         f.add(lDisplay);
+        f.add(bBack);
         // f.add(b5);
         // f.add(b6);
         // f.add(lpopTime);
@@ -208,9 +208,10 @@ public class Main extends JPanel {
 
 
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f.setVisible(true);
-        f.setSize(700, 600);
+        f.setSize(700, 550);
         f.setLayout(null);
+        f.setLocation(400, 125);
+        f.setVisible(true);
 
     }
 
