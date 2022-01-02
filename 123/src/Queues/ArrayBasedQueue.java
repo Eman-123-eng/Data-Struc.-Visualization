@@ -7,6 +7,33 @@ public class ArrayBasedQueue<E> implements Cloneable {
     private int front, rear;
     private int manyItems;
 
+    public static void main(String[] args) {
+        ArrayBasedQueue<Integer> queue = new ArrayBasedQueue<>();
+
+        queue.add(5);
+        queue.add(12);
+        queue.add(45);
+        queue.add(7);
+        queue.add(4);
+        queue.add(12);
+        queue.add(5);
+        queue.add(2);
+        queue.add(02);
+        queue.add(54);
+        queue.add(87);
+        queue.add(45);
+        queue.add(45);
+        queue.add(45);
+        queue.add(45);
+        queue.add(45);
+        queue.add(45);
+        queue.add(10);
+        queue.add(85);
+        queue.add(8);
+
+        System.out.println(queue.displayQueue());
+    }
+
     public ArrayBasedQueue() {
         front = rear = -1;
         manyItems = 0;
@@ -127,7 +154,7 @@ public class ArrayBasedQueue<E> implements Cloneable {
     }
 
     public String displayQueue() {
-        String str = "The queue data: ";
+        String str = "Your queue data: ";
         if (!isEmpty())
             for (int i = front; i != rear + 1; i = nextIndex(i))
                 str += data[i] + " | ";

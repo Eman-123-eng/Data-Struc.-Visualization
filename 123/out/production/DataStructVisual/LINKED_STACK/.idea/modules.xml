@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DataStructVisual.iml" filepath="$PROJECT_DIR$/DataStructVisual.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/LINKED_STACK.iml" filepath="$PROJECT_DIR$/.idea/LINKED_STACK.iml" />
     </modules>
   </component>
 </project>

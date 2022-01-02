@@ -2,7 +2,6 @@ package LINKED_STACK;
 
 import LinkedLists.LinkedList;
 import LinkedLists.Node;
-import PACKAGE_NAME.ArrStack;
 
 import javax.swing.*;
 import java.awt.*;

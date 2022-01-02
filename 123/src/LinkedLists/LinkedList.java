@@ -166,13 +166,12 @@ public class LinkedList<E> extends Node implements Cloneable {
             if (cursor == head) {  //beginning case or single case
                 head = head.getLink();
                 cursor = head;
-            }
-            else if(manyNodes == 1){
-                head = tail= cursor = precursor = null;
-            }
-            else if (cursor == tail) { //end case
+            } else if (manyNodes == 1) {
+                head = tail = cursor = precursor = null;
+            } else if (cursor == tail) { //end case
                 Node<E> it;
-                for(it = head; (manyNodes != 2) && it.getLink() != precursor; it=it.getLink()){}
+                for (it = head; (manyNodes != 2) && it.getLink() != precursor; it = it.getLink()) {
+                }
                 cursor = precursor;
                 precursor = it;
                 tail = cursor;
@@ -193,6 +192,15 @@ public class LinkedList<E> extends Node implements Cloneable {
 
     public void start() {
         cursor = head;
+    }
+
+    public boolean isEmpty() {
+        return (manyNodes == 0);
+    }
+
+    public E getHead(){
+        if(isEmpty()) return null;
+        return head.getData();
     }
 
     public E getCurrent() {
@@ -233,10 +241,6 @@ public class LinkedList<E> extends Node implements Cloneable {
         }
         return str;
     }
-
-
-
-
 
 
 }
