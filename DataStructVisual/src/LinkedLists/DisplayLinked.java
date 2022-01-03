@@ -29,7 +29,7 @@ public class DisplayLinked {
         l1.setBounds(50, 20, (lSize.width + 10), lSize.height);
 
         JLabel lDisplay = new JLabel();
-        lDisplay.setBounds(70, 70, 350, 20);
+        lDisplay.setBounds(60, 70, 450, 20);
 
         JTextField textAdd = new JTextField();
         textAdd.setBounds(500, 20, 100, 25);
@@ -111,13 +111,13 @@ public class DisplayLinked {
                     startTime = System.nanoTime();
                     list.addLast(input);
                     endTime = System.nanoTime();
-                    lDisplay.setText(LinkedList.display(list));
+                    lDisplay.setText("The list data: " + LinkedList.display(list));
                 } else {
                     System.out.println(inpText);
                     startTime = System.nanoTime();
                     strList.addLast(inpText);
                     endTime = System.nanoTime();
-                    lDisplay.setText(LinkedList.display(strList));
+                    lDisplay.setText("The list data: " + LinkedList.display(strList));
                 }
                 double elapsedTime = (double) (endTime - startTime) / 1000;
                 tModelAdd.insertRow(i++, new String[]{inpText, String.valueOf(elapsedTime)});
@@ -137,7 +137,7 @@ public class DisplayLinked {
                     startTime = System.nanoTime();
                     list.removeCurrent();
                     endTime = System.nanoTime();
-                    lDisplay.setText(LinkedList.display(list));
+                    lDisplay.setText("The list data: " + LinkedList.display(list));
                     if (list.size() == 0) {
                         flag[0] = 0;
                         timeStr[1] = " ";
@@ -147,7 +147,7 @@ public class DisplayLinked {
                     startTime = System.nanoTime();
                     strList.removeCurrent();
                     endTime = System.nanoTime();
-                    lDisplay.setText(LinkedList.display(strList));
+                    lDisplay.setText("The list data: " + LinkedList.display(strList));
                     if (strList.size() == 0) {
                         flagStr[0] = 0;
                         timeStr[1] = " ";
@@ -160,7 +160,6 @@ public class DisplayLinked {
                 //timeStr[1] += (endTime - startTime) + "  ";
                 //lRemoveTime.setText("Removing time : " + timeStr[1]);
             }
-
         });
 
         b3.addActionListener(new ActionListener() {

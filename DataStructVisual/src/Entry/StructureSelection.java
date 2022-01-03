@@ -1,5 +1,6 @@
 package Entry;
 
+import Arrays.DisplayArray;
 import LinkedLists.DisplayLinked;
 import Queues.DisplayArrayQueue;
 
@@ -83,7 +84,8 @@ public class StructureSelection implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == bArray) {
-
+            DisplayArray.main(null);
+            f.setVisible(false);
         } else if (ae.getSource() == bLinked) {
             new DisplayLinked();
             f.setVisible(false);
