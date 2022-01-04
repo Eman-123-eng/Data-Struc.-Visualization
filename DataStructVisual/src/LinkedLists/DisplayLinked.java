@@ -1,7 +1,6 @@
 package LinkedLists;
 
 import Entry.StructureSelection;
-import Queues.DisplayArrayQueue;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,8 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DisplayLinked {
-    static String s = "The elapsed time:";
-    static String displayStr = "";
     static int i = 0, j = 0;
 
     public DisplayLinked() {
@@ -25,14 +22,16 @@ public class DisplayLinked {
         JFrame frame = new JFrame("Linked List");
 
         JLabel l1 = new JLabel("Enter either numbers or strings (not both) to be added to your linked list:");
+        l1.setFont(new Font("Courier", Font.PLAIN, 14));
         Dimension lSize = l1.getMaximumSize();
         l1.setBounds(50, 20, (lSize.width + 10), lSize.height);
 
         JLabel lDisplay = new JLabel();
-        lDisplay.setBounds(60, 70, 450, 20);
+        lDisplay.setFont(new Font("Monospaced", Font.PLAIN, 13));
+        lDisplay.setBounds(60, 70, 500, 20);
 
         JTextField textAdd = new JTextField();
-        textAdd.setBounds(500, 20, 100, 25);
+        textAdd.setBounds(520, 40, 100, 25);
 
         DefaultTableModel tModelAdd = new DefaultTableModel();
         tModelAdd.addColumn("Added Item");
@@ -76,7 +75,6 @@ public class DisplayLinked {
         bBack.setForeground(new Color(42, 44, 43));
         bBack.setBorder(new RoundedBorder(10));
 
-
         bAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String inpText = textAdd.getText();
@@ -111,13 +109,13 @@ public class DisplayLinked {
                     startTime = System.nanoTime();
                     list.addLast(input);
                     endTime = System.nanoTime();
-                    lDisplay.setText("The list data: " + LinkedList.display(list));
+                    lDisplay.setText("List data: " + LinkedList.display(list));
                 } else {
                     System.out.println(inpText);
                     startTime = System.nanoTime();
                     strList.addLast(inpText);
                     endTime = System.nanoTime();
-                    lDisplay.setText("The list data: " + LinkedList.display(strList));
+                    lDisplay.setText("List data: " + LinkedList.display(strList));
                 }
                 double elapsedTime = (double) (endTime - startTime) / 1000;
                 tModelAdd.insertRow(i++, new String[]{inpText, String.valueOf(elapsedTime)});
@@ -137,26 +135,29 @@ public class DisplayLinked {
                     startTime = System.nanoTime();
                     list.removeCurrent();
                     endTime = System.nanoTime();
-                    lDisplay.setText("The list data: " + LinkedList.display(list));
+                    lDisplay.setText("List data: " + LinkedList.display(list));
                     if (list.size() == 0) {
                         flag[0] = 0;
                         timeStr[1] = " ";
+                        lDisplay.setText("");
                     }
                 } else {
                     if (strList.isEmpty()) JOptionPane.showMessageDialog(null, "The linked list is empty");
                     startTime = System.nanoTime();
                     strList.removeCurrent();
                     endTime = System.nanoTime();
-                    lDisplay.setText("The list data: " + LinkedList.display(strList));
+                    lDisplay.setText("List data: " + LinkedList.display(strList));
                     if (strList.size() == 0) {
                         flagStr[0] = 0;
                         timeStr[1] = " ";
+                        lDisplay.setText("");
                     }
                 }
                 double elapsedTime = (double) (endTime - startTime) / 1000;
                 tModelRemove.insertRow(j++, new String[]{(String) tModelAdd.getValueAt((--i), 0), String.valueOf(elapsedTime)});
                 spRemove.setVisible(true);
                 tModelAdd.removeRow((i));
+
                 //timeStr[1] += (endTime - startTime) + "  ";
                 //lRemoveTime.setText("Removing time : " + timeStr[1]);
             }
@@ -181,9 +182,10 @@ public class DisplayLinked {
         bBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int a = JOptionPane.showConfirmDialog(null, "Are you sure?");
+                int a = JOptionPane.showConfirmDialog(null, "Are you sure to go back?\n **NOTE: your data will be lost**");
                 if (a == 0) { //yes will go back
                     StructureSelection.main(new String[0]);
+                    i = j = 0;
                     frame.setVisible(false);
                 }
                 System.out.println(a);
@@ -208,7 +210,7 @@ public class DisplayLinked {
     }
 
     public static void main(String[] args) {
-
+        new DisplayLinked();
     }
 
     private static class RoundedBorder implements Border {

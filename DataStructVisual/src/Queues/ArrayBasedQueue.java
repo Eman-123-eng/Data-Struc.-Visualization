@@ -154,7 +154,7 @@ public class ArrayBasedQueue<E> implements Cloneable {
     }
 
     public String displayQueue() {
-        String str = "Your queue data: ";
+        String str = "Queue data: ";
         if (!isEmpty())
             for (int i = front; i != rear + 1; i = nextIndex(i))
                 str += data[i] + " | ";

@@ -1,8 +1,6 @@
 package ArrayStack;
 
-
 import Entry.StructureSelection;
-import Queues.DisplayArrayQueue;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -10,10 +8,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import static javax.swing.BorderFactory.createEmptyBorder;
 
 public class Main extends JPanel {
-    static String s = "The elapsed time:";
-    static String displayStr = "";
     static int i = 0, j = 0;
 
     public static void main(String[] args) {
@@ -23,11 +22,9 @@ public class Main extends JPanel {
         JFrame f = new JFrame("Array Stack");
 
         JLabel l = new JLabel("Enter the item you want to push into your stack ");
+        l.setFont(new Font("Courier", Font.PLAIN, 14));
         Dimension lSize = l.getMaximumSize();
         l.setBounds(50, 20, (lSize.width + 10), lSize.height);
-
-        JLabel lDisplay = new JLabel();
-        lDisplay.setBounds(70, 70, 350, 20);
 
         /*JLabel l1 = new JLabel("\n Note: (you can only push one element in the stack)");
         Dimension size1 = l1.getPreferredSize();
@@ -35,6 +32,13 @@ public class Main extends JPanel {
 
         JTextField t1 = new JTextField();
         t1.setBounds(450, 20, 100, 25);
+
+        Graphic graphic = new Graphic();
+
+        JScrollPane grSp = new JScrollPane(graphic);
+        grSp.setBounds(580, 60, 45, 360);
+        grSp.setBorder(createEmptyBorder());
+        grSp.setVisible(true);
 
         DefaultTableModel tModelAdd = new DefaultTableModel();
         tModelAdd.addColumn("Added Item");
@@ -44,7 +48,7 @@ public class Main extends JPanel {
         jtAdd.getTableHeader().setReorderingAllowed(false);
 
         JScrollPane spAdd = new JScrollPane(jtAdd);
-        spAdd.setBounds(100, 130, 200, 200);
+        spAdd.setBounds(80, 130, 200, 200);
         spAdd.setVisible(false);
 
         /*JTextArea dis = new JTextArea();
@@ -69,15 +73,11 @@ public class Main extends JPanel {
         jtRemove.setEnabled(false);
         jtRemove.getTableHeader().setReorderingAllowed(false);
         JScrollPane spRemove = new JScrollPane(jtRemove);
-        spRemove.setBounds(400, 130, 200, 200);
+        spRemove.setBounds(350, 130, 200, 200);
         spRemove.setVisible(false);
 
-
-        MyCanvas mPaint = new MyCanvas();
-        f.add(mPaint);
-
         JButton b1 = new JButton("Push");
-        b1.setBounds(150, 370, 90, 30);
+        b1.setBounds(130, 370, 90, 30);
         b1.setForeground(new Color(42, 44, 43));
         b1.setBorder(new RoundedBorder(10));
 
@@ -92,10 +92,12 @@ public class Main extends JPanel {
                     s.push(num);
                     long endTime = System.nanoTime();
                     double elapsedTime = (double) (endTime - startTime) / 1000;
-                    //displayStr = ArrayStack.displayArrStack();
-                    Object[] data = s.data();
 
-                    // lDisplay.setText(displayStr);
+                    if (s.size() == 1) {
+                        grSp.setVisible(true);
+                    }
+                    graphic.addRectangle(0, ArrayStack.Graphic.num, 43, 39, t1.getText());
+
                     tModelAdd.insertRow(i, new String[]{t1.getText(), String.valueOf(elapsedTime)});
                     spAdd.setVisible(true);
                     t1.setText("");
@@ -106,7 +108,7 @@ public class Main extends JPanel {
         });
 
         JButton b2 = new JButton("Pop");
-        b2.setBounds(300, 370, 90, 30);
+        b2.setBounds(280, 370, 90, 30);
         b2.setForeground(new Color(42, 44, 43));
         b2.setBorder(new RoundedBorder(10));
 
@@ -121,6 +123,12 @@ public class Main extends JPanel {
                     //  if(s.manyItems == 0)
                     //  dis.append("\n there's no items left in your stack! ");
                     double elapsedTime = (double) (endTime - startTime) / 1000;
+
+                    graphic.removeRec();
+                    if (s.isEmpty()) {
+                        grSp.setVisible(false);
+                    }
+
                     tModelRemove.insertRow(j, new String[]{(String) tModelAdd.getValueAt(0, 0), String.valueOf(elapsedTime)});
                     spRemove.setVisible(true);
                     tModelAdd.removeRow((0));
@@ -131,7 +139,7 @@ public class Main extends JPanel {
         });
 
         JButton b3 = new JButton("Peek");
-        b3.setBounds(450, 370, 90, 30);
+        b3.setBounds(430, 370, 90, 30);
         b3.setForeground(new Color(42, 44, 43));
         b3.setBorder(new RoundedBorder(10));
         b3.addActionListener(new ActionListener() {
@@ -154,9 +162,11 @@ public class Main extends JPanel {
         bBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int a = JOptionPane.showConfirmDialog(null, "Are you sure?");
+                int a = JOptionPane.showConfirmDialog(null, "Are you sure to go back?\n **NOTE: your data will be lost**");
                 if (a == 0) {
                     StructureSelection.main(new String[0]);
+                    i = j =0;
+                    graphic.clear();
                     f.setVisible(false);
                 }
             }
@@ -171,24 +181,6 @@ public class Main extends JPanel {
             }
         });
 
-
-
-
-        /*JButton b6=new JButton("clone");
-        b6.setBounds(450,350,80,30);
-        b6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(s.manyItems==0)
-                    JOptionPane.showMessageDialog(null,"Your Stack is empty!");
-                else {
-                    ArrStack c = s.clone();
-                    dis.append("\n your stack has been copied successfuly! \n");
-                }
-            }
-        });*/
-
-
         f.add(l);
         //  f.add(l1);
         f.add(t1);
@@ -199,8 +191,8 @@ public class Main extends JPanel {
         // f.add(b4);
         f.add(spAdd);
         f.add(spRemove);
-        f.add(lDisplay);
         f.add(bBack);
+        f.add(grSp);
         // f.add(b5);
         // f.add(b6);
         // f.add(lpopTime);
@@ -235,36 +227,49 @@ public class Main extends JPanel {
         }
     }
 
+}
 
-    //not Done
-    static class MyCanvas extends JPanel {
-        String ss = "message";
-        int x = 45;
-        int y = 45;
 
-        @Override
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawRect(50, 100, 200, 200);
-            g.setColor(Color.red);
-            g.drawString(s, x, y);
+class Graphic extends JPanel {
+    static int  num = 320;
+
+    private static ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
+    private static ArrayList<String> values = new ArrayList<String>();
+    private Rectangle shape;
+
+    public Graphic() {
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (int i = 0; i < rectangles.size(); i++) {
+            g.drawRect((rectangles.get(i).x), (rectangles.get(i).y), (rectangles.get(i)).width, (rectangles.get(i)).height);
+            g.drawString(values.get(i), 15, ((rectangles.get(i)).y) + 25 );
+            //System.out.println((rectangles.get(i).x) + " " + (rectangles.get(i).y)+" "+(rectangles.get(i).width));
         }
     }
-    /*public void paint(Graphics g) {
-        g.setFont(new Font("",0,100));
-        FontMetrics fm = getFontMetrics(new Font("",0,100));
-        String s = "message";
-        int x = 5;
-        int y = 5;
 
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            int h = fm.getHeight();
-            int w = fm.charWidth(c);
+    public void addRectangle(int x, int y, int w, int h, String val) {
+        shape = new Rectangle(x, y, w, h);
+        rectangles.add(shape);
+        values.add(val);
+        ArrayStack.Graphic.num -= 40;
+        repaint();
+    }
 
-            g.drawRect(x, y, w, h);
-            g.drawString(String.valueOf(c), x, y + h);
-            x = x + w;
-        }
-    }*/
+    public void removeRec() {
+        rectangles.remove(rectangles.size() - 1);
+        values.remove(values.size() - 1);
+        ArrayStack.Graphic.num += 40;
+        repaint();
+    }
+
+    public void clear(){
+        rectangles.clear();
+        values.clear();
+        num = 320;
+        repaint();
+    }
 }
+

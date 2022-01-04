@@ -181,9 +181,9 @@ public class LinkedList<E> extends Node implements Cloneable {
                 cursor = cursor.getLink();
             }
             manyNodes--;
-        } else {
+        } /*else {
             throw new IllegalStateException("There is no current element");
-        }
+        }*/
     }
 
     public int size() {

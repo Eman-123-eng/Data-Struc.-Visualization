@@ -29,6 +29,11 @@ public class LinkedBasedQueue<E> implements Cloneable {
         return (front == null);
     }
 
+    public E getFront() {
+        if (!isEmpty()) return front.getData();
+        return null;
+    }
+
     public E remove() {
         E answer;
         if (isEmpty())
@@ -58,13 +63,13 @@ public class LinkedBasedQueue<E> implements Cloneable {
     }
 
     public String displayQueue() {
-        String str = "The queue data: ";
+        String str = "Queue data: ";
         Node<E> cursor;
         if (!isEmpty()) {
             for (cursor = front; cursor != rear.getLink(); cursor = cursor.getLink())
                 str += cursor.getData() + " | ";
 
-            return str + " - No. of elements: " + size() + " - front: " + front.getData() + " - rear: " + rear.getData();
+             //+ " - No. of elements: " + size() + " - front: " + front.getData() + " - rear: " + rear.getData();
         }
         return str;
     }

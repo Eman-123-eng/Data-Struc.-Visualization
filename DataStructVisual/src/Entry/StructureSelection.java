@@ -3,6 +3,7 @@ package Entry;
 import Arrays.DisplayArray;
 import LinkedLists.DisplayLinked;
 import Queues.DisplayArrayQueue;
+import Queues.DisplayLinkedQueue;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -127,8 +128,8 @@ public class StructureSelection implements ActionListener {
                 DisplayArrayQueue.main(null); //will send the name of the user
                 f.setVisible(false);
             } else if (Objects.equals(choice, "2")) {
-                //implement linked queue
-                //f.setVisible(false);
+                DisplayLinkedQueue.main(null);
+                f.setVisible(false);
             }
             System.out.println(choice);
         }
