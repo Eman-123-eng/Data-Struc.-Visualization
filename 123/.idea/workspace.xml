@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="65d04e75-7e50-4b31-9374-a800957e7226" name="Changes" comment="changes">
+      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/LinkedStack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/LinkedStack.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LINKED_STACK/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/src/LINKED_STACK/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LINKED_STACK/LinkedStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LINKED_STACK/LinkedStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LINKED_STACK/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LINKED_STACK/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LINKED_STACK/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LinkedLists/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkedLists/LinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LinkedLists/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkedLists/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PACKAGE_NAME/ArrStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PACKAGE_NAME/ArrStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PACKAGE_NAME/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PACKAGE_NAME/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="22IVTpE0ei9hwRHK3Cec7DKyRxw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="ArrStack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ArrStack" />
+      <module name="123" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="LINKED_STACK.Main" />
+      <module name="123" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="LINKED_STACK.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PACKAGE_NAME.Main" />
+      <module name="123" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="PACKAGE_NAME.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.ArrStack" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="65d04e75-7e50-4b31-9374-a800957e7226" name="Changes" comment="" />
+      <created>1639525162409</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1639525162409</updated>
+      <workItem from="1639525176530" duration="15000" />
+      <workItem from="1639527214552" duration="2856000" />
+      <workItem from="1639533454197" duration="4814000" />
+      <workItem from="1639539067329" duration="3399000" />
+      <workItem from="1640136614388" duration="25000" />
+      <workItem from="1640161085089" duration="1538000" />
+      <workItem from="1640167260385" duration="88000" />
+      <workItem from="1640467896761" duration="5848000" />
+      <workItem from="1640813452039" duration="16051000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+  </component>
+</project>
