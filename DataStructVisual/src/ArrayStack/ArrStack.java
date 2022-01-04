@@ -60,17 +60,18 @@ public class ArrStack<E> implements Cloneable {
     }
 
     public E pop() {
-        E answer;
-        if (manyItems == 0)
-            throw new EmptyStackException();
-        answer = (E) data[--manyItems];
-        data[manyItems] = null; // For the garbage collector
+        E answer = null;
+        if (manyItems != 0) {
+            //throw new EmptyStackException();
+            answer = (E) data[--manyItems];
+            data[manyItems] = null; // For the garbage collector
+        }
         return answer;
     }
 
     public void push(E item) {
-        if(isEmpty()) {
-            data =(E[])new Object[10];
+        if (isEmpty()) {
+            data = (E[]) new Object[10];
         }
         if (manyItems == data.length) {
             ensureCapacity(manyItems * 2 + 1);
@@ -125,7 +126,7 @@ public class ArrStack<E> implements Cloneable {
 
     }
 
-    public void clear(){
+    public void clear() {
         data = null;
         manyItems = 0;
     }

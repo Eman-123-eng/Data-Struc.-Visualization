@@ -86,8 +86,7 @@ public class Main extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int num;
-                long startTime = 0;
-                long endTime = 0;
+                long startTime = 0, endTime = 0;
                 count[0] = Integer.parseInt(tCount.getText());
                 if (t1.getText().length() == 0 && tCount.getText().length() == 0) {
                     JOptionPane.showMessageDialog(null, "You must enter the item and the amount to be added");
@@ -114,8 +113,7 @@ public class Main extends JPanel {
                 } catch (Exception ex) {
                     //String added
                     strArrStack.clear();
-                    if (flag[0] != 1)
-                        flagStr[0] = 1;
+                    if (flag[0] != 1) flagStr[0] = 1;
                     else {
                         JOptionPane.showMessageDialog(null, " Cannot add numbers and strings in the same stack");
                         //t1.setText("");
@@ -132,7 +130,7 @@ public class Main extends JPanel {
                 }
                 double elapsedTime = ((double) (endTime - startTime) * 1.0E-6);
 
-                graphic.addRectangle(0, ArrayStack.Graphic.num, 50, 39, t1.getText());
+                //graphic.addRectangle(0, ArrayStack.Graphic.num, 50, 39, t1.getText());
 
                 tModelAdd.insertRow(i, new String[]{t1.getText(), tCount.getText(),String.valueOf(elapsedTime)});
                 spAdd.setVisible(true);
@@ -161,7 +159,7 @@ public class Main extends JPanel {
                     }
                     endTime = System.nanoTime();
 
-                    graphic.removeRec();
+                    //graphic.removeRec();
                     if (arrStack.isEmpty()) {
                         flag[0] = 0;
                         grSp.setVisible(false);
@@ -177,7 +175,7 @@ public class Main extends JPanel {
                     }
                     endTime = System.nanoTime();
 
-                    graphic.removeRec();
+                    //graphic.removeRec();
                     if (strArrStack.isEmpty()) {
                         flagStr[0] = 0;
                         grSp.setVisible(false);

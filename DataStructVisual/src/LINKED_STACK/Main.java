@@ -86,13 +86,13 @@ public class Main {
                 }
                 try {
                     linkedStack.clear();
+                    num = Integer.parseInt(t1.getText());
                     if (flagStr[0] != 1) flag[0] = 1;
                     else {
                         JOptionPane.showMessageDialog(null, " Cannot add numbers and strings in the same stack");
                         //t1.setText("");
                         return;
                     }
-                    num = Integer.parseInt(t1.getText());
                     startTime = System.nanoTime();
                     for (int i = 1; i <= count[0]; i++) {
                         linkedStack.push(num);
@@ -106,18 +106,18 @@ public class Main {
                     //String added
                     strLinkedStack.clear();
 
-                    if (flag[0] != 1)
-                        flagStr[0] = 1;
-                    else {
+                    if (flag[0] != 1) flagStr[0] = 1;
+                    /*else {
                         JOptionPane.showMessageDialog(null, " Cannot add numbers and strings in the same stack");
                         // t1.setText("");
                         return;
-                    }
+                    }*/
                     startTime = System.nanoTime();
                     for (int i = 1; i <= count[0]; i++) {
                         strLinkedStack.push(t1.getText());
                     }
                     endTime = System.nanoTime();
+                    System.out.println(linkedStack.size());
 
                     /*if (strLinkedStack.size() == 1) {
                         grSp.setVisible(true);
@@ -125,7 +125,7 @@ public class Main {
                 }
                 double elapsedTime = ((double) (endTime - startTime) * 1.0E-6);
 
-                graphic.addRectangle(0, LINKED_STACK.Graphic.num, 50, 39, t1.getText());
+                //graphic.addRectangle(0, LINKED_STACK.Graphic.num, 50, 39, t1.getText());
 
                 tModelAdd.insertRow(i, new String[]{ t1.getText(), tCount.getText(), String.valueOf(elapsedTime)});
                 spAdd.setVisible(true);
@@ -153,7 +153,7 @@ public class Main {
                         linkedStack.pop();
                     }
                     endTime = System.nanoTime();
-                    graphic.removeRec();
+                    //graphic.removeRec();
                     if (linkedStack.isEmpty()) {
                         flag[0] = 0;
                         grSp.setVisible(false);
@@ -169,7 +169,7 @@ public class Main {
                     }
                     endTime = System.nanoTime();
 
-                    graphic.removeRec();
+                    //graphic.removeRec();
                     if (strLinkedStack.isEmpty()) {
                         flagStr[0] = 0;
                         grSp.setVisible(false);
