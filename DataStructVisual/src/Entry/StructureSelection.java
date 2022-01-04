@@ -9,8 +9,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Objects;
 
 public class StructureSelection implements ActionListener {
@@ -71,7 +70,18 @@ public class StructureSelection implements ActionListener {
         f.add(bStack);
         f.add(bQueue);
 
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        f.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int choice = JOptionPane.showConfirmDialog(null, "Are you sure to exit?");
+                System.out.println(choice);
+                if(choice == 0){
+                    System.exit(0);
+                }else{
+                    f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
         f.setSize(675, 500);
         f.setLayout(null);
         f.setLocation(400, 125);
@@ -88,7 +98,7 @@ public class StructureSelection implements ActionListener {
             DisplayArray.main(null);
             f.setVisible(false);
         } else if (ae.getSource() == bLinked) {
-            new DisplayLinked();
+            DisplayLinked.main(null);
             f.setVisible(false);
         } else if (ae.getSource() == bStack) {
             JFrame fS = new JFrame("Stack");
@@ -134,6 +144,7 @@ public class StructureSelection implements ActionListener {
             System.out.println(choice);
         }
     }
+
 
     private static class RoundedBorder implements Border {
         private int radius;

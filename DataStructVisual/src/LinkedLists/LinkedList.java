@@ -70,6 +70,11 @@ public class LinkedList<E> extends Node implements Cloneable {
         manyNodes++;
     }
 
+    public void clear() {
+        head = tail = cursor = precursor = null;
+        manyNodes = 0;
+    }
+
     public void addBefore(E element) {
         if (head == null) { //empty list
             addFirst(element);
@@ -198,8 +203,8 @@ public class LinkedList<E> extends Node implements Cloneable {
         return (manyNodes == 0);
     }
 
-    public E getHead(){
-        if(isEmpty()) return null;
+    public E getHead() {
+        if (isEmpty()) return null;
         return head.getData();
     }
 
@@ -225,19 +230,19 @@ public class LinkedList<E> extends Node implements Cloneable {
         String str = "";
         if (it != null) {
             str = it.getData().toString();
-          //  System.out.print("list data: " + it.getData());
+            //  System.out.print("list data: " + it.getData());
             for (it = it.getLink(); it != null; it = it.getLink()) {
-              //  System.out.print(" -> " + it.getData());
-                str += " -> " + it.getData();
+                //  System.out.print(" -> " + it.getData());
+                str += "->" + it.getData();
             }
-           // System.out.println();
-          //  System.out.println("head: " + l.head.getData());
-          //  System.out.println("tail: " + l.tail.getData());
-          //  if (l.cursor != null && l.precursor != null) {
-              //  System.out.println("cursor: " + l.getCurrent());
-               // System.out.println("precursor: " + l.precursor.getData());
-          //  }
-           // System.out.println("manyNodes: " + l.size() + " OR " + Node.listLength(l.head));
+            // System.out.println();
+            //  System.out.println("head: " + l.head.getData());
+            //  System.out.println("tail: " + l.tail.getData());
+            //  if (l.cursor != null && l.precursor != null) {
+            //  System.out.println("cursor: " + l.getCurrent());
+            // System.out.println("precursor: " + l.precursor.getData());
+            //  }
+            // System.out.println("manyNodes: " + l.size() + " OR " + Node.listLength(l.head));
         }
         return str;
     }

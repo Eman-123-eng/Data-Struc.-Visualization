@@ -1,5 +1,6 @@
 package LinkedLists;
 
+import Arrays.DisplayArray;
 import Entry.StructureSelection;
 
 import javax.swing.*;
@@ -8,20 +9,26 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class DisplayLinked {
     static int i = 0, j = 0;
 
     public DisplayLinked() {
-        LinkedList<Integer> list = new LinkedList<Integer>();
-        LinkedList<String> strList = new LinkedList<String>();
+
+    }
+
+    public static void main(String[] args) {
+        LinkedList<Integer> list = new LinkedList<>();
+        LinkedList<String> strList = new LinkedList<>();
         final int[] flag = {0};
         final int[] flagStr = {0};
-        final String[] timeStr = {"", ""};
+        final int[] count = new int[1];
 
         JFrame frame = new JFrame("Linked List");
 
-        JLabel l1 = new JLabel("Enter either numbers or strings (not both) to be added to your linked list:");
+        JLabel l1 = new JLabel("Enter the item to be added to your linked list:");
         l1.setFont(new Font("Courier", Font.PLAIN, 14));
         Dimension lSize = l1.getMaximumSize();
         l1.setBounds(50, 20, (lSize.width + 10), lSize.height);
@@ -31,44 +38,59 @@ public class DisplayLinked {
         lDisplay.setBounds(60, 70, 500, 20);
 
         JTextField textAdd = new JTextField();
-        textAdd.setBounds(520, 40, 100, 25);
+        textAdd.setBounds(400, 20, 100, 25);
+
+        JLabel lCount = new JLabel("Enter the amount: ");
+        lCount.setFont(new Font("Courier", Font.PLAIN, 14));
+        Dimension lCoSize = lCount.getMaximumSize();
+        lCount.setBounds(50, 50, (lCoSize.width + 10), lCoSize.height);
+
+        JTextField tCount = new JTextField();
+        tCount.setBounds(400, 50, 100, 25);
 
         DefaultTableModel tModelAdd = new DefaultTableModel();
         tModelAdd.addColumn("Added Item");
+        tModelAdd.addColumn("No. of Items");
         tModelAdd.addColumn("Time (ms)");
         JTable jtAdd = new JTable(tModelAdd);
         jtAdd.setEnabled(false);
         jtAdd.getTableHeader().setReorderingAllowed(false);
 
         JScrollPane spAdd = new JScrollPane(jtAdd);
-        spAdd.setBounds(100, 130, 200, 200);
+        spAdd.setBounds(80, 130, 230, 200);
         spAdd.setVisible(false);
 
         DefaultTableModel tModelRemove = new DefaultTableModel();
         tModelRemove.addColumn("Removed Item");
+        tModelRemove.addColumn("No. of Items");
         tModelRemove.addColumn("Time (ms)");
         JTable jtRemove = new JTable(tModelRemove);
         jtRemove.setEnabled(false);
         jtRemove.getTableHeader().setReorderingAllowed(false);
 
         JScrollPane spRemove = new JScrollPane(jtRemove);
-        spRemove.setBounds(400, 130, 200, 200);
+        spRemove.setBounds(380, 130, 245, 200);
         spRemove.setVisible(false);
 
         JButton bAdd = new JButton("Add");
-        bAdd.setBounds(150, 370, 90, 30);
+        bAdd.setBounds(200, 370, 90, 30);
         bAdd.setForeground(new Color(42, 44, 43));
         bAdd.setBorder(new RoundedBorder(10));
 
         JButton bRemove = new JButton("Remove");
-        bRemove.setBounds(300, 370, 90, 30);
+        bRemove.setBounds(350, 370, 90, 30);
         bRemove.setForeground(new Color(42, 44, 43));
         bRemove.setBorder(new RoundedBorder(10));
 
         JButton b3 = new JButton("Get Head");
-        b3.setBounds(450, 370, 90, 30);
+        b3.setBounds(200, 420, 90, 30);
         b3.setForeground(new Color(42, 44, 43));
         b3.setBorder(new RoundedBorder(10));
+
+        JButton b4 = new JButton("Size");
+        b4.setBounds(350, 420, 90, 30);
+        b4.setForeground(new Color(42, 44, 43));
+        b4.setBorder(new RoundedBorder(10));
 
         JButton bBack = new JButton("Back");
         bBack.setBounds(550, 450, 90, 30);
@@ -79,22 +101,33 @@ public class DisplayLinked {
             public void actionPerformed(ActionEvent e) {
                 String inpText = textAdd.getText();
                 int input;
-                long startTime;
-                long endTime;
-                if (inpText.length() == 0) {
-                    JOptionPane.showMessageDialog(null, "You must enter the item to be added");
+                long startTime = 0;
+                long endTime = 0;
+                count[0] = Integer.parseInt(tCount.getText());
+                if (inpText.length() == 0 && tCount.getText().length() == 0) {
+                    JOptionPane.showMessageDialog(null, "You must enter the item and the amount to be added");
                     return;
                 }
                 try { //number added
-                    input = new Integer(inpText);
+                    list.clear();
+                    input = Integer.parseInt(inpText);
                     if (flagStr[0] != 1) flag[0] = 1;
                     else {
                         JOptionPane.showMessageDialog(null, " Cannot add numbers and strings in the same list");
                         textAdd.setText("");
                         return;
                     }
+                    //System.out.println(input);
+                    startTime = System.nanoTime();
+                    for (int i = 1; i <= count[0]; i++) {
+                        list.addLast(input);
+                    }
+                    endTime = System.nanoTime();
+
+                    // lDisplay.setText("Linked list data: " + LinkedList.display(list));
                 } catch (Exception ex) {
                     //String added
+                    strList.clear();
                     if (flag[0] != 1)
                         flagStr[0] = 1;
                     else {
@@ -102,27 +135,18 @@ public class DisplayLinked {
                         textAdd.setText("");
                         return;
                     }
-                }
-                if (flagStr[0] != 1) {
-                    input = new Integer(inpText);
-                    System.out.println(input);
-                    startTime = System.nanoTime();
-                    list.addLast(input);
-                    endTime = System.nanoTime();
-                    lDisplay.setText("List data: " + LinkedList.display(list));
-                } else {
                     System.out.println(inpText);
                     startTime = System.nanoTime();
-                    strList.addLast(inpText);
+                    for (int i = 1; i <= count[0]; i++) {
+                        strList.addLast(inpText);
+                    }
+
                     endTime = System.nanoTime();
-                    lDisplay.setText("List data: " + LinkedList.display(strList));
+                    // lDisplay.setText("Linked list data: " + LinkedList.display(strList));
                 }
-                double elapsedTime = (double) (endTime - startTime) / 1000;
-                tModelAdd.insertRow(i++, new String[]{inpText, String.valueOf(elapsedTime)});
+                double elapsedTime = ((double) (endTime - startTime) * 1.0E-6);
+                tModelAdd.insertRow(i++, new String[]{inpText, tCount.getText(), String.valueOf(elapsedTime)});
                 spAdd.setVisible(true);
-                // timeStr[0] += (endTime - startTime) + "  ";
-                //lAddTime.setText("Adding time: " + timeStr[0]);
-                textAdd.setText("");
             }
         });
 
@@ -130,36 +154,43 @@ public class DisplayLinked {
             public void actionPerformed(ActionEvent e) {
                 long startTime;
                 long endTime;
+                count[0] = Integer.parseInt(tCount.getText());
                 if (flag[0] == 1) { //numbers
-                    if (list.isEmpty()) JOptionPane.showMessageDialog(null, "The linked list is empty");
+                    if (list.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "The linked list is empty");
+                        return;
+                    }
                     startTime = System.nanoTime();
-                    list.removeCurrent();
+                    for (int i = 1; i <= count[0]; i++) {
+                        list.removeCurrent();
+                    }
                     endTime = System.nanoTime();
-                    lDisplay.setText("List data: " + LinkedList.display(list));
+
+                    //lDisplay.setText("Linked list data: " + LinkedList.display(list));
                     if (list.size() == 0) {
                         flag[0] = 0;
-                        timeStr[1] = " ";
                         lDisplay.setText("");
                     }
                 } else {
-                    if (strList.isEmpty()) JOptionPane.showMessageDialog(null, "The linked list is empty");
+                    if (strList.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "The linked list is empty");
+                        return;
+                    }
                     startTime = System.nanoTime();
-                    strList.removeCurrent();
+                    for (int i = 1; i <= count[0]; i++) {
+                        strList.removeCurrent();
+                    }
                     endTime = System.nanoTime();
-                    lDisplay.setText("List data: " + LinkedList.display(strList));
+                    // lDisplay.setText("Linked list data: " + LinkedList.display(strList));
                     if (strList.size() == 0) {
                         flagStr[0] = 0;
-                        timeStr[1] = " ";
-                        lDisplay.setText("");
                     }
                 }
-                double elapsedTime = (double) (endTime - startTime) / 1000;
-                tModelRemove.insertRow(j++, new String[]{(String) tModelAdd.getValueAt((--i), 0), String.valueOf(elapsedTime)});
+                double elapsedTime = (double) (endTime - startTime) * 1.0E-6;
+                tModelRemove.insertRow(j++, new String[]{(String) tModelAdd.getValueAt((--i), 0), (String) tModelAdd.getValueAt((i), 1), String.valueOf(elapsedTime)});
+                //tModelAdd.removeRow((i));
                 spRemove.setVisible(true);
-                tModelAdd.removeRow((i));
-
-                //timeStr[1] += (endTime - startTime) + "  ";
-                //lRemoveTime.setText("Removing time : " + timeStr[1]);
+                i++;
             }
         });
 
@@ -179,6 +210,21 @@ public class DisplayLinked {
             }
         });
 
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (flag[0] == 1) { //numbers
+                    if (list.isEmpty()) JOptionPane.showMessageDialog(null, "The linked list is empty");
+                    else
+                        JOptionPane.showMessageDialog(null, new Object[]{new JLabel("The size of the linked list is: "), new JLabel(String.valueOf(list.size()))});
+                } else {
+                    if (strList.isEmpty()) JOptionPane.showMessageDialog(null, "The linked list is empty");
+                    else
+                        JOptionPane.showMessageDialog(null, new Object[]{new JLabel("The size of the linked list is: "), new JLabel(String.valueOf(strList.size()))});
+                }
+            }
+        });
+
         bBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -193,24 +239,34 @@ public class DisplayLinked {
         });
 
         frame.add(l1);
+        frame.add(lCount);
+        frame.add(tCount);
         frame.add(lDisplay);
         frame.add(textAdd);
         frame.add(bAdd);
         frame.add(bRemove);
         frame.add(spAdd);
         frame.add(spRemove);
-        frame.add(b3);
+       // frame.add(b3);
+      //  frame.add(b4);
         frame.add(bBack);
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int choice = JOptionPane.showConfirmDialog(null, "Are you sure to exit?");
+                System.out.println(choice);
+                if (choice == 0) {
+                    System.exit(0);
+                } else {
+                    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
         frame.setSize(700, 550);
         frame.setLayout(null);
         frame.setLocation(400, 125);
         frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new DisplayLinked();
     }
 
     private static class RoundedBorder implements Border {

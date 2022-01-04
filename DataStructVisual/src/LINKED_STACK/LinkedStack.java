@@ -64,8 +64,8 @@ public class LinkedStack<E> extends LinkedList<E> implements Cloneable{
         return Node.listLength(m.head); // Generic listLength method
     }
 
-
-
-
-
+    public void clear() {
+        m.head=null;
+        m.tail=null;
+    }
 }

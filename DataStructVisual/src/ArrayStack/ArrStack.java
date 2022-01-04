@@ -69,7 +69,9 @@ public class ArrStack<E> implements Cloneable {
     }
 
     public void push(E item) {
-
+        if(isEmpty()) {
+            data =(E[])new Object[10];
+        }
         if (manyItems == data.length) {
             ensureCapacity(manyItems * 2 + 1);
         }
@@ -123,11 +125,11 @@ public class ArrStack<E> implements Cloneable {
 
     }
 
-    public Object[] data() {
-        Object s[] = new Object[30];
-
-        return data;
+    public void clear(){
+        data = null;
+        manyItems = 0;
     }
+
 }
 
 

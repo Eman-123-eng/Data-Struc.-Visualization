@@ -25,6 +25,11 @@ public class LinkedBasedQueue<E> implements Cloneable {
         manyNodes++;
     }
 
+    public void clear(){
+        front = rear = null;
+        manyNodes = 0;
+    }
+
     public boolean isEmpty() {
         return (front == null);
     }

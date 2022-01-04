@@ -1,16 +1,14 @@
 package Arrays;
-
-
 /**
  * A wrapper for the Java array just for this application.
  */
-public class Array {
+public class Array<E> {
     private static final int DEFAULT_SIZE = 3; // Small to make it easier to observe the shifting effect.
-    private int[] arr;
+    private E[] arr;
     int size;
 
     public Array() {
-        arr = new int[DEFAULT_SIZE];
+        arr = (E[]) new Object[DEFAULT_SIZE];
         size = 0;
     }
 
@@ -18,11 +16,16 @@ public class Array {
         return size;
     }
 
-    public int getFirst() {
+    public E getFirst() {
         return arr[0];
     }
 
-    public void add(int index, int value) throws ArrayIndexOutOfBoundsException {
+    public void clear(){
+        arr = (E[]) new Object[DEFAULT_SIZE];;
+        size = 0;
+    }
+
+    public void add(int index, E value) throws ArrayIndexOutOfBoundsException {
         if (index < 0 || index > size) throw new ArrayIndexOutOfBoundsException("");
         if (size < arr.length) { // No need to expand, shift right away.
             for (int i = size; i >= Math.max(1, index); i--) { // Don't let i reach zero!!!
@@ -30,7 +33,7 @@ public class Array {
             }
             arr[index] = value;
         } else {
-            int[] newArr = new int[arr.length * 2 + 1];
+            E[] newArr = (E[]) new Object[arr.length * 2 + 1];
             for (int i = 0; i < index; i++)
                 newArr[i] = arr[i];
             newArr[index] = value;
@@ -64,7 +67,7 @@ public class Array {
     }
 
     public static void main(String[] args) {
-        Array arr = new Array();
+        Array<Integer> arr = new Array<>();
         arr.add(arr.size(), 5);
         arr.add(arr.size(), 41);
         arr.add(arr.size(), 63);

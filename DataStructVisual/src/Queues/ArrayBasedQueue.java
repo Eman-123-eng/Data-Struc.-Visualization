@@ -48,6 +48,12 @@ public class ArrayBasedQueue<E> implements Cloneable {
         data = (E[]) new Object[initCapacity];
     }
 
+    public void clear() {
+        data = (E[]) new Object[10];
+        front = rear = -1;
+        manyItems = 0;
+    }
+
     public E getFront() {
         if (manyItems == 0) return null;
         return data[front];

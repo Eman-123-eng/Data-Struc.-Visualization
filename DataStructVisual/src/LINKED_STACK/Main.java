@@ -15,9 +15,11 @@ public class Main {
     static int i = 0, j = 0;
 
     public static void main(String[] args) {
-        final String[] timeStr = {"", ""};
-        LinkedStack s = new LinkedStack();
-
+        LinkedStack<Integer> linkedStack = new LinkedStack<>();
+        LinkedStack<String> strLinkedStack = new LinkedStack<>();
+        final int[] flag = {0};
+        final int[] flagStr = {0};
+        final int[] count = new int[1];
 
         JFrame f = new JFrame("Linked Stack");
 
@@ -27,106 +29,198 @@ public class Main {
         l.setBounds(50, 20, (lSize.width + 10), lSize.height);
 
         JTextField t1 = new JTextField();
-        t1.setBounds(450, 20, 100, 25);
+        t1.setBounds(400, 20, 100, 25);
+
+        JLabel lCount = new JLabel("Enter the amount: ");
+        lCount.setFont(new Font("Courier", Font.PLAIN, 14));
+        Dimension lCoSize = lCount.getMaximumSize();
+        lCount.setBounds(50, 50, (lCoSize.width + 10), lCoSize.height);
+
+        JTextField tCount = new JTextField();
+        tCount.setBounds(400, 50, 100, 25);
 
         Graphic graphic = new Graphic();
 
         JScrollPane grSp = new JScrollPane(graphic);
-        grSp.setBounds(580, 60, 45, 360);
+        grSp.setBounds(560, 60, 60, 360);
         grSp.setBorder(createEmptyBorder());
         grSp.setVisible(false);
 
         DefaultTableModel tModelAdd = new DefaultTableModel();
         tModelAdd.addColumn("Added Item");
+        tModelAdd.addColumn("No. of Items");
         tModelAdd.addColumn("Time (ms)");
         JTable jtAdd = new JTable(tModelAdd);
         jtAdd.setEnabled(false);
         jtAdd.getTableHeader().setReorderingAllowed(false);
 
         JScrollPane spAdd = new JScrollPane(jtAdd);
-        spAdd.setBounds(80, 130, 200, 200);
+        spAdd.setBounds(80, 130, 230, 200);
         spAdd.setVisible(false);
 
         DefaultTableModel tModelRemove = new DefaultTableModel();
         tModelRemove.addColumn("Removed Item");
+        tModelRemove.addColumn("No. of Items");
         tModelRemove.addColumn("Time (ms)");
         JTable jtRemove = new JTable(tModelRemove);
         jtRemove.setEnabled(false);
         jtRemove.getTableHeader().setReorderingAllowed(false);
         JScrollPane spRemove = new JScrollPane(jtRemove);
-        spRemove.setBounds(350, 130, 200, 200);
+        spRemove.setBounds(380, 130, 245, 200);
         spRemove.setVisible(false);
 
 
         JButton b1 = new JButton("Push");
-        b1.setBounds(130, 370, 90, 30);
+        b1.setBounds(180, 370, 90, 30);
         b1.setForeground(new Color(42, 44, 43));
         b1.setBorder(new RoundedBorder(10));
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (t1.getText().length() == 0) {
-                    JOptionPane.showMessageDialog(null, "You must enter the item to be added");
-                } else {
-                    int num = Integer.parseInt(t1.getText());
-                    long startTime = System.nanoTime();
-                    s.push(num);
-                    long endTime = System.nanoTime();
-                    double elapsedTime = (double) (endTime - startTime) / 1000;
-
-                    if (s.size() == 1) {
-                        grSp.setVisible(true);
-                    }
-                    graphic.addRectangle(0, LINKED_STACK.Graphic.num, 43, 39, t1.getText());
-
-                    tModelAdd.insertRow(i, new String[]{t1.getText(), String.valueOf(elapsedTime)});
-                    spAdd.setVisible(true);
-                    t1.setText("");
+                int num;
+                long startTime = 0, endTime = 0;
+                count[0] = Integer.parseInt(tCount.getText());
+                if (t1.getText().length() == 0 && tCount.getText().length() == 0) {
+                    JOptionPane.showMessageDialog(null, "You must enter the item and the amount to be added");
+                    return;
                 }
+                try {
+                    linkedStack.clear();
+                    if (flagStr[0] != 1) flag[0] = 1;
+                    else {
+                        JOptionPane.showMessageDialog(null, " Cannot add numbers and strings in the same stack");
+                        //t1.setText("");
+                        return;
+                    }
+                    num = Integer.parseInt(t1.getText());
+                    startTime = System.nanoTime();
+                    for (int i = 1; i <= count[0]; i++) {
+                        linkedStack.push(num);
+                    }
+                    endTime = System.nanoTime();
+
+                    /*if (linkedStack.size() == 1) {
+                        grSp.setVisible(true);
+                    }*/
+                } catch (Exception ex) {
+                    //String added
+                    strLinkedStack.clear();
+
+                    if (flag[0] != 1)
+                        flagStr[0] = 1;
+                    else {
+                        JOptionPane.showMessageDialog(null, " Cannot add numbers and strings in the same stack");
+                        // t1.setText("");
+                        return;
+                    }
+                    startTime = System.nanoTime();
+                    for (int i = 1; i <= count[0]; i++) {
+                        strLinkedStack.push(t1.getText());
+                    }
+                    endTime = System.nanoTime();
+
+                    /*if (strLinkedStack.size() == 1) {
+                        grSp.setVisible(true);
+                    }*/
+                }
+                double elapsedTime = ((double) (endTime - startTime) * 1.0E-6);
+
+                graphic.addRectangle(0, LINKED_STACK.Graphic.num, 50, 39, t1.getText());
+
+                tModelAdd.insertRow(i, new String[]{ t1.getText(), tCount.getText(), String.valueOf(elapsedTime)});
+                spAdd.setVisible(true);
+                // t1.setText("");
             }
         });
 
         JButton b2 = new JButton("Pop");
-        b2.setBounds(280, 370, 90, 30);
+        b2.setBounds(350, 370, 90, 30);
         b2.setForeground(new Color(42, 44, 43));
         b2.setBorder(new RoundedBorder(10));
 
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (s.isEmpty()) JOptionPane.showMessageDialog(null, "The stack is empty");
-                else {
-                    long startTime = System.nanoTime();
-                    s.pop();
-                    long endTime = System.nanoTime();
-
+                long startTime = 0, endTime = 0;
+                count[0] = Integer.parseInt(tCount.getText());
+                if (flag[0] == 1) { //numbers
+                    if (linkedStack.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "The stack is empty");
+                        return;
+                    }
+                    startTime = System.nanoTime();
+                    for (int i = 1; i <= count[0]; i++) {
+                        linkedStack.pop();
+                    }
+                    endTime = System.nanoTime();
                     graphic.removeRec();
-                    if (s.isEmpty()) {
+                    if (linkedStack.isEmpty()) {
+                        flag[0] = 0;
                         grSp.setVisible(false);
                     }
+                } else {
+                    if (strLinkedStack.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "The stack is empty");
+                        return;
+                    }
+                    startTime = System.nanoTime();
+                    for (int i = 1; i <= count[0]; i++) {
+                        strLinkedStack.pop();
+                    }
+                    endTime = System.nanoTime();
 
-                    double elapsedTime = (double) (endTime - startTime) / 1000;
-                    tModelRemove.insertRow(j, new String[]{(String) tModelAdd.getValueAt(0, 0), String.valueOf(elapsedTime)});
-                    spRemove.setVisible(true);
-                    tModelAdd.removeRow((0));
+                    graphic.removeRec();
+                    if (strLinkedStack.isEmpty()) {
+                        flagStr[0] = 0;
+                        grSp.setVisible(false);
+                    }
                 }
+                double elapsedTime = ((double) (endTime - startTime) * 1.0E-6);
+                tModelRemove.insertRow(j, new String[]{(String) tModelAdd.getValueAt(0, 0), (String) tModelAdd.getValueAt(0, 1),String.valueOf(elapsedTime)});
+                spRemove.setVisible(true);
+                //tModelAdd.removeRow((0));
             }
         });
 
         JButton b3 = new JButton("Peek");
-        b3.setBounds(430, 370, 90, 30);
+        b3.setBounds(180, 420, 90, 30);
         b3.setForeground(new Color(42, 44, 43));
         b3.setBorder(new RoundedBorder(10));
         b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (s.isEmpty())
-                    JOptionPane.showMessageDialog(null, "The stack is empty");
-                else {
-                    JOptionPane.showMessageDialog(null, new Object[]{new JLabel("The first item in the stack is: "), new JLabel(s.peek().toString())});
+                if (flag[0] == 1) { //numbers
+                    if (linkedStack.isEmpty()) JOptionPane.showMessageDialog(null, "The stack is empty");
+                    else
+                        JOptionPane.showMessageDialog(null, new Object[]{new JLabel("The first item in the stack is: "), new JLabel(linkedStack.peek().toString())});
+
+                } else {
+                    if (strLinkedStack.isEmpty()) JOptionPane.showMessageDialog(null, "The stack is empty");
+                    else
+                        JOptionPane.showMessageDialog(null, new Object[]{new JLabel("The first item in the stack is: "), new JLabel(strLinkedStack.peek())});
                 }
             }
         });
+
+        JButton b4 = new JButton("Size");
+        b4.setBounds(350, 420, 90, 30);
+        b4.setForeground(new Color(42, 44, 43));
+        b4.setBorder(new RoundedBorder(10));
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (flag[0] == 1) { //numbers
+                    if (linkedStack.isEmpty()) JOptionPane.showMessageDialog(null, "The stack is empty");
+                    else
+                        JOptionPane.showMessageDialog(null, new Object[]{new JLabel("The size of the stack is: "), new JLabel(String.valueOf(linkedStack.size()))});
+                } else {
+                    if (strLinkedStack.isEmpty()) JOptionPane.showMessageDialog(null, "The stack is empty");
+                    else
+                        JOptionPane.showMessageDialog(null, new Object[]{new JLabel("The size of the stack is: "), new JLabel(String.valueOf(strLinkedStack.size()))});
+                }
+            }
+        });
+
         JButton bBack = new JButton("Back");
         bBack.setBounds(550, 450, 90, 30);
         bBack.setForeground(new Color(42, 44, 43));
@@ -145,64 +239,14 @@ public class Main {
             }
         });
 
-        /*JButton b4 = new JButton("Size");
-        b4.setBounds(150, 350, 80, 30);
-        b4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dis.setText("The size of your stack is " + s.size());
-            }
-        });*/
-
-        /*JButton b5 = new JButton("Display");
-        b5.setBounds(300, 350, 80, 30);
-        b5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dis.setText("");
-                if (s.isEmpty())
-                    dis.append("your stack is Empty!");
-                else {
-                    dis.append("the items in your stack are : \n");
-                    LinkedList p = s.m.clone();
-                    Node curr = p.head;
-                    Node next = null;
-                    Node prev = null;
-                    while (curr != null) {
-                        next = curr.link;
-                        curr.link = prev;
-                        prev = curr;
-                        curr = next;
-                    }
-                    p.head = prev;
-                    for (Node v = p.head; v != null; v = v.link) {
-                        dis.append(v.getData() + "\n");
-                    }
-                }
-
-            }
-        });*/
-
-        /*JButton b6=new JButton("clone");
-        b6.setBounds(450,350,80,30);
-        b6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(s.manyItems==0)
-                    JOptionPane.showMessageDialog(null,"Your Stack is empty!");
-                else {
-                    ArrStack c = s.clone();
-                    dis.append("\n your stack has been copied successfuly! \n");
-                    dis.append("The elapsed time is : " + c.time +"\n");
-                }
-            }
-        });*/
-
         f.add(l);
         f.add(t1);
+        f.add(lCount);
+        f.add(tCount);
         f.add(b1);
         f.add(b2);
-        f.add(b3);
+       // f.add(b3);
+      // f.add(b4);
         f.add(spAdd);
         f.add(spRemove);
         f.add(bBack);
@@ -210,7 +254,18 @@ public class Main {
         //f.add(b6);
 
 
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        f.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int choice = JOptionPane.showConfirmDialog(null, "Are you sure to exit?");
+                System.out.println(choice);
+                if (choice == 0) {
+                    System.exit(0);
+                } else {
+                    f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
         f.setSize(700, 550);
         f.setLayout(null);
         f.setLocation(400, 125);
@@ -239,7 +294,7 @@ public class Main {
 }
 
 class Graphic extends JPanel {
-    static int num = 320;
+    static int num = 320, strSpace;
 
     private static ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
     private static ArrayList<String> values = new ArrayList<String>();
@@ -253,7 +308,12 @@ class Graphic extends JPanel {
         super.paintComponent(g);
         for (int i = 0; i < rectangles.size(); i++) {
             g.drawRect((rectangles.get(i).x), (rectangles.get(i).y), (rectangles.get(i)).width, (rectangles.get(i)).height);
-            g.drawString(values.get(i), 15, ((rectangles.get(i)).y) + 25);
+            if (values.get(i).length() < 4) {
+                strSpace = 18;
+            } else {
+                strSpace = 7;
+            }
+            g.drawString(values.get(i), strSpace, ((rectangles.get(i)).y) + 25);
             //System.out.println((rectangles.get(i).x) + " " + (rectangles.get(i).y)+" "+(rectangles.get(i).width));
         }
     }
