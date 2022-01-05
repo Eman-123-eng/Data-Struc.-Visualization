@@ -1,7 +1,6 @@
 package Arrays;
 
 import Entry.StructureSelection;
-import Queues.DisplayArrayQueue;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -44,14 +43,14 @@ public class DisplayArray {
         JTextField tCount = new JTextField();
         tCount.setBounds(400, 50, 100, 25);
 
-        Graphic graphic = new Graphic();
+        /*Graphic graphic = new Graphic();
 
         JScrollPane grSp = new JScrollPane(graphic);
         grSp.setBounds(60, 70, 675, 45);
         grSp.setBorder(createEmptyBorder());
-        /*grSp.setBackground(new Color(238, 238, 238));
-        grSp.setForeground(new Color(238, 238, 238));*/
-        grSp.setVisible(false);
+        *//*grSp.setBackground(new Color(238, 238, 238));
+        grSp.setForeground(new Color(238, 238, 238));*//*
+        grSp.setVisible(false);*/
 
 
         DefaultTableModel tModelAdd = new DefaultTableModel();
@@ -89,11 +88,11 @@ public class DisplayArray {
             public void actionPerformed(ActionEvent e) {
                 int num, count = 0;
                 long startTime = 0, endTime = 0;
-                count = Integer.parseInt(tCount.getText());
                 if (t1.getText().length() == 0 && tCount.getText().length() == 0) {
                     JOptionPane.showMessageDialog(null, "You must enter the item and the amount to be added");
                     return;
                 }
+                count = Integer.parseInt(tCount.getText());
                 try { //number added
                     num = Integer.parseInt(t1.getText());
                     array.clear();
@@ -134,7 +133,7 @@ public class DisplayArray {
                 }
                 double elapsedTime = ((double) (endTime - startTime) * 1.0E-6);
 
-                graphic.addRectangle(Graphic.num, 0, 55, 41, t1.getText());
+                //graphic.addRectangle(Graphic.num, 0, 55, 41, t1.getText());
 
                 tModelAdd.insertRow(i++, new String[]{t1.getText(), tCount.getText(), String.valueOf(elapsedTime)});
                 spAdd.setVisible(true);
@@ -163,10 +162,10 @@ public class DisplayArray {
                         array.remove((array.size()) - 1);
                     }
                     endTime = System.nanoTime();
-                    graphic.removeRec();
+                    //graphic.removeRec();
                     if (array.isEmpty()) {
                         flag[0] = 0;
-                        grSp.setVisible(false);
+                        //grSp.setVisible(false);
                     }
 
                 } else {
@@ -179,10 +178,10 @@ public class DisplayArray {
                         strArray.remove((strArray.size()) - 1);
                     }
                     endTime = System.nanoTime();
-                    graphic.removeRec();
+                    //graphic.removeRec();
                     if (strArray.isEmpty()) {
                         flagStr[0] = 0;
-                        grSp.setVisible(false);
+                        //grSp.setVisible(false);
                     }
                 }
 
@@ -246,7 +245,7 @@ public class DisplayArray {
                 if (a == 0) { //yes will go back
                     StructureSelection.main(new String[0]);
                     i = j = 0;
-                    graphic.clear();
+                   // graphic.clear();
                     f.setVisible(false);
                 }
                 System.out.println(a);
@@ -264,7 +263,7 @@ public class DisplayArray {
       //  f.add(b3);
       //  f.add(b4);
         f.add(bBack);
-        f.add(grSp);
+        //f.add(grSp);
 
         f.addWindowListener(new WindowAdapter() {
             @Override
@@ -303,78 +302,6 @@ public class DisplayArray {
             g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
         }
     }
-
-}
-
-class Graphic extends JPanel {
-    static int num = 0, strSpace;
-    static String val;
-    private static ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
-    private static ArrayList<String> values = new ArrayList<String>();
-    private Rectangle shape;
-
-    public Graphic() {
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        /*for (Rectangle cr : rectangles) {
-            g.drawRect(cr.x, cr.y, cr.width, cr.height);
-            g.drawString(val, (cr.x) + 15, 25);
-            System.out.println(cr.x);
-        }*/
-        for (int i = 0; i < rectangles.size(); i++) {
-            g.drawRect((rectangles.get(i)).x, (rectangles.get(i)).y, (rectangles.get(i)).width, (rectangles.get(i)).height);
-            if (values.get(i).length() < 5) {
-                strSpace = 19;
-            } else {
-                strSpace = 6;
-            }
-            g.drawString(values.get(i), ((rectangles.get(i)).x + strSpace), 25);
-            //System.out.println((rectangles.get(i).x) + " " + (rectangles.get(i).y)+" "+(rectangles.get(i).width));
-        }
-    }
-
-    public void addRectangle(int x, int y, int w, int h, String val) {
-        shape = new Rectangle(x, y, w, h);
-        rectangles.add(shape);
-        values.add(val);
-        Graphic.num += 55;
-        repaint();
-    }
-
-    public void removeRec() {
-        rectangles.remove(rectangles.size() - 1);
-        values.remove(values.size() - 1);
-        Graphic.num -= 55;
-        repaint();
-    }
-
-    public void clear() {
-        rectangles.clear();
-        values.clear();
-        num = 0;
-        repaint();
-    }
-   /* @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        this.setBackground(Color.WHITE);
-
-        g.setColor(Color.BLUE);
-        for (; j != n && it < num; j++, it += 50) {
-            //if(it!= num) {
-
-            //  }
-        }
-        for (int i = 0; i < 200; i += 50) {
-            g.drawRect(i, 0, 50, 45);
-            g.setColor(Color.red);
-            g.drawString(("5"), (i + 15), 25);
-        }
-        //gr.setBounds(60, 70, 200, 45);
-    }*/
 
 }
 

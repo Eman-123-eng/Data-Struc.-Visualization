@@ -80,11 +80,11 @@ public class DisplayLinkedQueue {
             public void actionPerformed(ActionEvent e) {
                 int num;
                 long startTime = 0, endTime = 0;
-                count[0] = Integer.parseInt(tCount.getText());
                 if (t1.getText().length() == 0 && tCount.getText().length() == 0) {
                     JOptionPane.showMessageDialog(null, "You must enter the item and the amount to be added");
                     return;
                 }
+                count[0] = Integer.parseInt(tCount.getText());
                 try {  //number is added
                     linkedQueue.clear();
                     num = Integer.parseInt(t1.getText());

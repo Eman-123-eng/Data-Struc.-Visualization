@@ -27,7 +27,7 @@ public class DisplayArrayQueue {
         final int[] flagStr = {0};
         final int[] count = new int[1];
 
-        f = new JFrame("Array Queue");
+        f = new JFrame("Visualizer.Array Queue");
 
         JLabel l = new JLabel("Enter the item you want to add into your queue:");
         l.setFont(new Font("Courier", Font.PLAIN, 14));
@@ -97,11 +97,11 @@ public class DisplayArrayQueue {
             public void actionPerformed(ActionEvent e) {
                 int num;
                 long startTime = 0, endTime = 0;
-                count[0] = Integer.parseInt(tCount.getText());
                 if (t1.getText().length() == 0 && tCount.getText().length() == 0) {
                     JOptionPane.showMessageDialog(null, "You must enter the item and the amount to be added");
                     return;
                 }
+                count[0] = Integer.parseInt(tCount.getText());
                 try {  //number is added
                     arrayQueue.clear();
                     num = Integer.parseInt(t1.getText());

@@ -17,9 +17,9 @@ public class StructureSelection implements ActionListener {
     JFrame f;
 
     public StructureSelection() {
-        f = new JFrame("Data Structure Visualization");
+        f = new JFrame("Data Structures Performance");
 
-        JLabel l = new JLabel("Welcome to data structure visualization!");
+        JLabel l = new JLabel("Welcome to data structure Performance!");
         l.setFont(new Font("Courier", Font.ITALIC, 22));
         Dimension lSize = l.getMaximumSize();
         l.setBounds(120, 50, (lSize.width + 50), lSize.height);
@@ -106,7 +106,7 @@ public class StructureSelection implements ActionListener {
             l1.setFont(new Font("Courier", Font.BOLD, 14));
             JLabel l2 = new JLabel("Choose which implementation you would like to try:");
             l2.setFont(new Font("Courier", Font.BOLD, 14));
-            JLabel lArrS = new JLabel("1. Array Stack");
+            JLabel lArrS = new JLabel("1. Visualizer.Array Stack");
             lArrS.setFont(new Font("Helvetica", Font.BOLD, 14));
             JLabel lLinkedS = new JLabel("2. Linked Stack");
             lLinkedS.setFont(new Font("Helvetica", Font.BOLD, 14));
@@ -127,7 +127,7 @@ public class StructureSelection implements ActionListener {
             l1.setFont(new Font("Courier", Font.BOLD, 14));
             JLabel l2 = new JLabel("Choose which implementation you would like to try:");
             l2.setFont(new Font("Courier", Font.BOLD, 14));
-            JLabel lArrQ = new JLabel("1. Array Queue");
+            JLabel lArrQ = new JLabel("1. Visualizer.Array Queue");
             lArrQ.setFont(new Font("Helvetica", Font.BOLD, 14));
             JLabel lLinkedQ = new JLabel("2. Linked Queue");
             lLinkedQ.setFont(new Font("Helvetica", Font.BOLD, 14));

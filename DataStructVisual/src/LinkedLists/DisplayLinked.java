@@ -103,11 +103,11 @@ public class DisplayLinked {
                 int input;
                 long startTime = 0;
                 long endTime = 0;
-                count[0] = Integer.parseInt(tCount.getText());
                 if (inpText.length() == 0 && tCount.getText().length() == 0) {
                     JOptionPane.showMessageDialog(null, "You must enter the item and the amount to be added");
                     return;
                 }
+                count[0] = Integer.parseInt(tCount.getText());
                 try { //number added
                     list.clear();
                     input = Integer.parseInt(inpText);

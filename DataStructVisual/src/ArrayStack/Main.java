@@ -24,7 +24,7 @@ public class Main extends JPanel {
         final int[] flagStr = {0};
         final int[] count = new int[1];
 
-        JFrame f = new JFrame("Array Stack");
+        JFrame f = new JFrame("Visualizer.Array Stack");
 
         JLabel l = new JLabel("Enter the item you want to push into your stack ");
         l.setFont(new Font("Courier", Font.PLAIN, 14));
@@ -45,13 +45,6 @@ public class Main extends JPanel {
 
         JTextField tCount = new JTextField();
         tCount.setBounds(400, 50, 100, 25);
-
-        Graphic graphic = new Graphic();
-
-        JScrollPane grSp = new JScrollPane(graphic);
-        grSp.setBounds(560, 60, 60, 360);
-        grSp.setBorder(createEmptyBorder());
-        grSp.setVisible(true);
 
         DefaultTableModel tModelAdd = new DefaultTableModel();
         tModelAdd.addColumn("Added Item");
@@ -87,11 +80,11 @@ public class Main extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int num;
                 long startTime = 0, endTime = 0;
-                count[0] = Integer.parseInt(tCount.getText());
                 if (t1.getText().length() == 0 && tCount.getText().length() == 0) {
                     JOptionPane.showMessageDialog(null, "You must enter the item and the amount to be added");
                     return;
                 }
+                count[0] = Integer.parseInt(tCount.getText());
                 try {  //number is added
                     num = Integer.parseInt(t1.getText());
                     arrStack.clear();
@@ -106,9 +99,6 @@ public class Main extends JPanel {
                         arrStack.push(num);
                     }
                     endTime = System.nanoTime();
-                    /*if (arrStack.size() == 1) {
-                        grSp.setVisible(true);
-                    }*/
 
                 } catch (Exception ex) {
                     //String added
@@ -124,9 +114,7 @@ public class Main extends JPanel {
                         strArrStack.push(t1.getText());
                     }
                     endTime = System.nanoTime();
-                    /*if (strArrStack.size() == 1) {
-                        grSp.setVisible(true);
-                    }*/
+
                 }
                 double elapsedTime = ((double) (endTime - startTime) * 1.0E-6);
 
@@ -162,7 +150,6 @@ public class Main extends JPanel {
                     //graphic.removeRec();
                     if (arrStack.isEmpty()) {
                         flag[0] = 0;
-                        grSp.setVisible(false);
                     }
                 } else {
                     if (strArrStack.isEmpty()) {
@@ -178,7 +165,6 @@ public class Main extends JPanel {
                     //graphic.removeRec();
                     if (strArrStack.isEmpty()) {
                         flagStr[0] = 0;
-                        grSp.setVisible(false);
                     }
                 }
                 double elapsedTime = ((double) (endTime - startTime) * 1.0E-6);
@@ -240,7 +226,6 @@ public class Main extends JPanel {
                 if (a == 0) {
                     StructureSelection.main(new String[0]);
                     i = j = 0;
-                    graphic.clear();
                     f.setVisible(false);
                 }
             }
@@ -260,7 +245,6 @@ public class Main extends JPanel {
         f.add(spAdd);
         f.add(spRemove);
         f.add(bBack);
-        f.add(grSp);
 
 
         f.addWindowListener(new WindowAdapter() {
@@ -304,52 +288,4 @@ public class Main extends JPanel {
 
 }
 
-
-class Graphic extends JPanel {
-    static int num = 320 , strSpace;
-
-    private static ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
-    private static ArrayList<String> values = new ArrayList<String>();
-    private Rectangle shape;
-
-    public Graphic() {
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        for (int i = 0; i < rectangles.size(); i++) {
-            g.drawRect((rectangles.get(i).x), (rectangles.get(i).y), (rectangles.get(i)).width, (rectangles.get(i)).height);
-            if (values.get(i).length() < 4) {
-                strSpace = 18;
-            } else {
-                strSpace = 7;
-            }
-            g.drawString(values.get(i), strSpace, ((rectangles.get(i)).y) + 25);
-            //System.out.println((rectangles.get(i).x) + " " + (rectangles.get(i).y)+" "+(rectangles.get(i).width));
-        }
-    }
-
-    public void addRectangle(int x, int y, int w, int h, String val) {
-        shape = new Rectangle(x, y, w, h);
-        rectangles.add(shape);
-        values.add(val);
-        ArrayStack.Graphic.num -= 40;
-        repaint();
-    }
-
-    public void removeRec() {
-        rectangles.remove(rectangles.size() - 1);
-        values.remove(values.size() - 1);
-        ArrayStack.Graphic.num += 40;
-        repaint();
-    }
-
-    public void clear() {
-        rectangles.clear();
-        values.clear();
-        num = 320;
-        repaint();
-    }
-}
 

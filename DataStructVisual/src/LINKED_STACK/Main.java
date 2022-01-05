@@ -39,13 +39,6 @@ public class Main {
         JTextField tCount = new JTextField();
         tCount.setBounds(400, 50, 100, 25);
 
-        Graphic graphic = new Graphic();
-
-        JScrollPane grSp = new JScrollPane(graphic);
-        grSp.setBounds(560, 60, 60, 360);
-        grSp.setBorder(createEmptyBorder());
-        grSp.setVisible(false);
-
         DefaultTableModel tModelAdd = new DefaultTableModel();
         tModelAdd.addColumn("Added Item");
         tModelAdd.addColumn("No. of Items");
@@ -79,11 +72,11 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 int num;
                 long startTime = 0, endTime = 0;
-                count[0] = Integer.parseInt(tCount.getText());
                 if (t1.getText().length() == 0 && tCount.getText().length() == 0) {
                     JOptionPane.showMessageDialog(null, "You must enter the item and the amount to be added");
                     return;
                 }
+                count[0] = Integer.parseInt(tCount.getText());
                 try {
                     linkedStack.clear();
                     num = Integer.parseInt(t1.getText());
@@ -99,9 +92,6 @@ public class Main {
                     }
                     endTime = System.nanoTime();
 
-                    /*if (linkedStack.size() == 1) {
-                        grSp.setVisible(true);
-                    }*/
                 } catch (Exception ex) {
                     //String added
                     strLinkedStack.clear();
@@ -119,9 +109,6 @@ public class Main {
                     endTime = System.nanoTime();
                     System.out.println(linkedStack.size());
 
-                    /*if (strLinkedStack.size() == 1) {
-                        grSp.setVisible(true);
-                    }*/
                 }
                 double elapsedTime = ((double) (endTime - startTime) * 1.0E-6);
 
@@ -156,7 +143,6 @@ public class Main {
                     //graphic.removeRec();
                     if (linkedStack.isEmpty()) {
                         flag[0] = 0;
-                        grSp.setVisible(false);
                     }
                 } else {
                     if (strLinkedStack.isEmpty()) {
@@ -172,7 +158,6 @@ public class Main {
                     //graphic.removeRec();
                     if (strLinkedStack.isEmpty()) {
                         flagStr[0] = 0;
-                        grSp.setVisible(false);
                     }
                 }
                 double elapsedTime = ((double) (endTime - startTime) * 1.0E-6);
@@ -233,7 +218,6 @@ public class Main {
                 if (a == 0) {
                     StructureSelection.main(new String[0]);
                     i = j = 0;
-                    graphic.clear();
                     f.setVisible(false);
                 }
             }
@@ -250,7 +234,6 @@ public class Main {
         f.add(spAdd);
         f.add(spRemove);
         f.add(bBack);
-        f.add(grSp);
         //f.add(b6);
 
 
@@ -290,54 +273,6 @@ public class Main {
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
         }
-    }
-}
-
-class Graphic extends JPanel {
-    static int num = 320, strSpace;
-
-    private static ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
-    private static ArrayList<String> values = new ArrayList<String>();
-    private Rectangle shape;
-
-    public Graphic() {
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        for (int i = 0; i < rectangles.size(); i++) {
-            g.drawRect((rectangles.get(i).x), (rectangles.get(i).y), (rectangles.get(i)).width, (rectangles.get(i)).height);
-            if (values.get(i).length() < 4) {
-                strSpace = 18;
-            } else {
-                strSpace = 7;
-            }
-            g.drawString(values.get(i), strSpace, ((rectangles.get(i)).y) + 25);
-            //System.out.println((rectangles.get(i).x) + " " + (rectangles.get(i).y)+" "+(rectangles.get(i).width));
-        }
-    }
-
-    public void addRectangle(int x, int y, int w, int h, String val) {
-        shape = new Rectangle(x, y, w, h);
-        rectangles.add(shape);
-        values.add(val);
-        LINKED_STACK.Graphic.num -= 40;
-        repaint();
-    }
-
-    public void removeRec() {
-        rectangles.remove(rectangles.size() - 1);
-        values.remove(values.size() - 1);
-        LINKED_STACK.Graphic.num += 40;
-        repaint();
-    }
-
-    public void clear() {
-        rectangles.clear();
-        values.clear();
-        num = 320;
-        repaint();
     }
 }
 
