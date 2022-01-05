@@ -1,6 +1,7 @@
 package Trees;
 
 import Entry.StructureSelection;
+
 import java.util.TreeSet;
 
 import javax.swing.*;
@@ -39,7 +40,7 @@ public class DisplayTree {
         lDisplay.setBounds(70, 70, 500, 20);
 
         JTextField t1 = new JTextField();
-        t1.setBounds(450, 20, 100, 25);
+        t1.setBounds(400, 20, 100, 25);
 
         JLabel lCount = new JLabel("Enter the amount: ");
         lCount.setFont(new Font("Courier", Font.PLAIN, 14));
@@ -81,7 +82,6 @@ public class DisplayTree {
         bAdd.setBorder(new RoundedBorder(10));
 
 
-
         bAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -110,7 +110,6 @@ public class DisplayTree {
                     for (int i = 1; i <= count[0]; i++) {
                         tree.add(input[0]);
                     }
-                    System.out.println(tree.size());
 
                     endTime = System.nanoTime();
 
@@ -134,72 +133,86 @@ public class DisplayTree {
             public void actionPerformed(ActionEvent e) {
                 String inpText = t1.getText();
                 input[0] = Integer.parseInt(inpText);
-                long startTime=0;
-                long endTime=0;
-                if(t1.getText()=="")
-                    JOptionPane.showMessageDialog(null,"you have to enter the l");
+                long startTime = 0;
+                long endTime = 0;
+                if (t1.getText() == "")
+                    JOptionPane.showMessageDialog(null, "you have to enter the l");
 
                 count[0] = Integer.parseInt(tCount.getText());
-                if (flag[0] == 1) { //numbers
-                    if (tree.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "The Tree is empty");
-                        return;
-                    }
-                    startTime = System.nanoTime();
-                    for (int i = 1; i <= count[0]; i++) {
-                        tree.remove(input[0]);
-                    }
-                    tree.root =null;
-                    System.out.println(tree.size());
-                    endTime = System.nanoTime();
 
-                    //lDisplay.setText("Linked list data: " + LinkedList.display(list));
-                    if (tree.size() == 0) {
-                        flag[0] = 0;
-                        lDisplay.setText("");
-                    }
+                if (tree.root == null) {
+                    JOptionPane.showMessageDialog(null, "The Tree is empty");
+                    return;
                 }
-                double elapsedTime = (double) (endTime - startTime) * 1.0E-6;
-                tModelRemove.insertRow(j++, new String[]{(String) tModelAdd.getValueAt((--i), 0), (String) tModelAdd.getValueAt((i), 1), String.valueOf(elapsedTime)});
-                //tModelAdd.removeRow((i));
+                startTime = System.nanoTime();
+                for (int i = 1; i <= count[0]; i++) {
+                    tree.remove(input[0]);
+                }
+                tree.root = null;
+                endTime = System.nanoTime();
+                System.out.println("size" + tree.size());
+
+                //lDisplay.setText("Linked list data: " + LinkedList.display(list));
+                if (tree.size() == 0) {
+                    flag[0] = 0;
+                    lDisplay.setText("");
+                }
+
+            double elapsedTime = (double) (endTime - startTime) * 1.0E-6;
+                tModelRemove.insertRow(j++,new String[]{
+                (String) tModelAdd.getValueAt((--i), 0), (String) tModelAdd.getValueAt((i), 1), String.valueOf(elapsedTime)
+            });
+            //tModelAdd.removeRow((i));
                 spRemove.setVisible(true);
-                i++;
+            i++;
+        }
+    });
+
+
+    JButton b3 = new JButton("Get Front");
+        b3.setBounds(450,370,90,30);
+        b3.setForeground(new
+
+    Color(42,44,43));
+        b3.setBorder(new
+
+    RoundedBorder(10));
+        b3.addActionListener(new
+
+    ActionListener() {
+        @Override
+        public void actionPerformed (ActionEvent e){
+            if (tree.isEmpty())
+                JOptionPane.showMessageDialog(null, "The tree is empty");
+            else {
+                JOptionPane.showMessageDialog(null, new Object[]{new JLabel("The first item in the tree is: "), new JLabel(String.valueOf(tree.getRoot()))});
             }
-        });
+        }
+    });
 
+    JButton bBack = new JButton("Back");
+        bBack.setBounds(550,450,90,30);
+        bBack.setForeground(new
 
-        JButton b3 = new JButton("Get Front");
-        b3.setBounds(450, 370, 90, 30);
-        b3.setForeground(new Color(42, 44, 43));
-        b3.setBorder(new RoundedBorder(10));
-        b3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (tree.isEmpty())
-                    JOptionPane.showMessageDialog(null, "The tree is empty");
-                else {
-                    JOptionPane.showMessageDialog(null, new Object[]{new JLabel("The first item in the tree is: "), new JLabel(String.valueOf(tree.getRoot()))});
-                }
+    Color(42,44,43));
+        bBack.setBorder(new
+
+    RoundedBorder(10));
+
+        bBack.addActionListener(new
+
+    ActionListener() {
+        @Override
+        public void actionPerformed (ActionEvent e){
+            int a = JOptionPane.showConfirmDialog(null, "Are you sure to go back?\n **NOTE: your data will be lost**");
+            if (a == 0) {
+                StructureSelection.main(new String[0]);
+                i = j = 0;
+                f.setVisible(false);
             }
-        });
-
-        JButton bBack = new JButton("Back");
-        bBack.setBounds(550, 450, 90, 30);
-        bBack.setForeground(new Color(42, 44, 43));
-        bBack.setBorder(new RoundedBorder(10));
-
-        bBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int a = JOptionPane.showConfirmDialog(null, "Are you sure to go back?\n **NOTE: your data will be lost**");
-                if (a == 0) {
-                    StructureSelection.main(new String[0]);
-                    i = j = 0;
-                    f.setVisible(false);
-                }
-                System.out.println(a);
-            }
-        });
+            System.out.println(a);
+        }
+    });
 
 
         f.add(spAdd);
@@ -213,45 +226,47 @@ public class DisplayTree {
         f.add(spRemove);
         f.add(bAdd);
         f.add(bRem);
-        //f.add(b3);
+    //f.add(b3);
         f.add(bBack);
 
-        f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                int choice = JOptionPane.showConfirmDialog(null, "Are you sure to exit?");
-                System.out.println(choice);
-                if (choice == 0) {
-                    System.exit(0);
-                } else {
-                    f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                }
+        f.addWindowListener(new
+
+    WindowAdapter() {
+        @Override
+        public void windowClosing (WindowEvent e){
+            int choice = JOptionPane.showConfirmDialog(null, "Are you sure to exit?");
+            System.out.println(choice);
+            if (choice == 0) {
+                System.exit(0);
+            } else {
+                f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             }
-        });
+        }
+    });
 
-        f.setSize(700, 550);
+        f.setSize(700,550);
         f.setLayout(null);
-        f.setLocation(400, 125);
+        f.setLocation(400,125);
         f.setVisible(true);
+}
+
+private static class RoundedBorder implements Border {
+    private int radius;
+
+    RoundedBorder(int radius) {
+        this.radius = radius;
     }
 
-    private static class RoundedBorder implements Border {
-        private int radius;
-
-        RoundedBorder(int radius) {
-            this.radius = radius;
-        }
-
-        public Insets getBorderInsets(Component c) {
-            return new Insets(this.radius + 1, this.radius + 1, this.radius + 2, this.radius);
-        }
-
-        public boolean isBorderOpaque() {
-            return false;
-        }
-
-        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
-        }
+    public Insets getBorderInsets(Component c) {
+        return new Insets(this.radius + 1, this.radius + 1, this.radius + 2, this.radius);
     }
+
+    public boolean isBorderOpaque() {
+        return false;
+    }
+
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
+    }
+}
 }

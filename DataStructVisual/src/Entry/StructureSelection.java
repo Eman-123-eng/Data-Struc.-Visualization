@@ -4,6 +4,7 @@ import Arrays.DisplayArray;
 import LinkedLists.DisplayLinked;
 import Queues.DisplayArrayQueue;
 import Queues.DisplayLinkedQueue;
+import Trees.DisplayTree;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -13,13 +14,13 @@ import java.awt.event.*;
 import java.util.Objects;
 
 public class StructureSelection implements ActionListener {
-    JButton bArray, bLinked, bStack, bQueue;
+    JButton bArray, bLinked, bStack, bQueue, bTree;
     JFrame f;
 
     public StructureSelection() {
         f = new JFrame("Data Structures Performance");
 
-        JLabel l = new JLabel("Welcome to data structure Performance!");
+        JLabel l = new JLabel("Welcome to data structure performance!");
         l.setFont(new Font("Courier", Font.ITALIC, 22));
         Dimension lSize = l.getMaximumSize();
         l.setBounds(120, 50, (lSize.width + 50), lSize.height);
@@ -57,10 +58,17 @@ public class StructureSelection implements ActionListener {
         bQueue.setForeground(new Color(42, 44, 43));
         bQueue.setBorder(new StructureSelection.RoundedBorder(10));
 
+        bTree = new JButton("Tree");
+        bTree.setBounds(260, 375, 130, 50);
+        bTree.setFont(new Font("Helvetica", Font.BOLD, 14));
+        bTree.setForeground(new Color(42, 44, 43));
+        bTree.setBorder(new StructureSelection.RoundedBorder(10));
+
         bArray.addActionListener(this);
         bLinked.addActionListener(this);
         bStack.addActionListener(this);
         bQueue.addActionListener(this);
+        bTree.addActionListener(this);
 
         f.add(l);
         f.add(lSelect);
@@ -69,6 +77,7 @@ public class StructureSelection implements ActionListener {
         f.add(bLinked);
         f.add(bStack);
         f.add(bQueue);
+        f.add(bTree);
 
         f.addWindowListener(new WindowAdapter() {
             @Override
@@ -142,6 +151,9 @@ public class StructureSelection implements ActionListener {
                 f.setVisible(false);
             }
             System.out.println(choice);
+        }else if (ae.getSource() == bTree) {
+            DisplayTree.main(null);
+            f.setVisible(false);
         }
     }
 
