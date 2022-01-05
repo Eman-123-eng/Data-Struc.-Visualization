@@ -1,7 +1,7 @@
 package Trees;
 
 public class IntTree {
-    private BTNode<Integer> root;
+    protected BTNode<Integer> root;
 
     public IntTree() {
     }
@@ -89,6 +89,7 @@ public class IntTree {
         }
         root.print(0);
     }
+    public void clearTree(){ root=null;}
 
 
 }
