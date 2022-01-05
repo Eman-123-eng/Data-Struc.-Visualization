@@ -149,6 +149,7 @@ public class DisplayTree {
                     for (int i = 1; i <= count[0]; i++) {
                         tree.remove(input[0]);
                     }
+                    tree.root =null;
                     System.out.println(tree.size());
                     endTime = System.nanoTime();
 
