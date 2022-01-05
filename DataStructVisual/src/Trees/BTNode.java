@@ -10,6 +10,18 @@ class BTNode<E> {
         left = initLeft;
         right = initRight;
     }
+    public BTNode<E> removeLeftmost( )
+    {
+        if (left == null)
+        { // The leftmost node is at the root because there is no left child.
+            return right;
+        }
+        else
+        { // A recursive call removes the leftmost node from my left subtree.
+            left = left.removeLeftmost( );
+            return this;
+        }
+    }
 
     public E getData() {
         return data;

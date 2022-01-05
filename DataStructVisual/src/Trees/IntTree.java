@@ -27,8 +27,10 @@ public class IntTree {
     }
 
     public boolean remove(int target) {
-        BTNode<Integer> targetNode = removeRec(root, target);
-        return (targetNode != null);
+        root.removeLeftmost();
+        /*BTNode<Integer> targetNode = removeRec(root, target);
+        return (targetNode != null);*/
+        return true;
     }
 
     private BTNode<Integer> removeRec(BTNode<Integer> node, int target) {
@@ -90,6 +92,20 @@ public class IntTree {
         root.print(0);
     }
     public void clearTree(){ root=null;}
+
+    public static void main(String[] args) {
+        IntTree t = new IntTree();
+        for(int i=0;i<10;i++)
+            t.add(10);
+
+        t.display();
+
+        System.out.println("The size " +t.size());
+        for(int i=0;i<10;i++)
+            t.remove(10);
+        System.out.println("The size " +t.size());
+    }
+
 
 
 }
