@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65d04e75-7e50-4b31-9374-a800957e7226" name="Changes" comment="changes">
-      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/LinkedStack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/LinkedStack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/123/LINKED_STACK/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LINKED_STACK/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/src/LINKED_STACK/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LINKED_STACK/LinkedStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LINKED_STACK/LinkedStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LINKED_STACK/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LINKED_STACK/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LINKED_STACK/Node.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LinkedLists/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkedLists/LinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LinkedLists/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkedLists/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PACKAGE_NAME/ArrStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PACKAGE_NAME/ArrStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PACKAGE_NAME/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PACKAGE_NAME/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="65d04e75-7e50-4b31-9374-a800957e7226" name="Changes" comment="changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,6 +101,7 @@
       <workItem from="1640167260385" duration="88000" />
       <workItem from="1640467896761" duration="5848000" />
       <workItem from="1640813452039" duration="16051000" />
+      <workItem from="1642613934963" duration="601000" />
     </task>
     <servers />
   </component>
